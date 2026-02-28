@@ -151,7 +151,11 @@ class GameStateService(
                 if (player.id == playerId) {
                     player.copy(
                         playedCard = update.playCard.playedCard,
-                        cards = player.cards.filter { it != update.playCard },
+                        cards = player.cards.filterNot { card ->
+                            card.flightTime == update.playCard.playedCard
+                                    && card.estimatedLanding ==update.playCard.playedCard
+                                    && card.travelDistance == update.playCard.playedCard
+                        },
                         yourTurn = false
                     )
                 } else {
@@ -178,11 +182,6 @@ class GameStateService(
                                     player.score
                                 },
                                 playedCard = null,// Clear played cards immediately after battle
-                                cards = player.cards.filterNot { card ->
-                                    card.flightTime == player.playedCard?.flightTime
-                                            && card.estimatedLanding == player.playedCard.estimatedLanding
-                                            && card.travelDistance == player.playedCard.travelDistance
-                                }
                             )
                         }
 
