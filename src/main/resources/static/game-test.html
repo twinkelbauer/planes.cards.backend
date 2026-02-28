@@ -107,6 +107,101 @@
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
 
+        .card.your-turn {
+            background: linear-gradient(135deg, #00ff88, #00d673);
+            animation: pulse 2s infinite;
+        }
+
+        .card:not(.your-turn) {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .turn-indicator {
+            background: linear-gradient(45deg, #ff9500, #ff6b00);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .turn-indicator.your-turn {
+            background: linear-gradient(45deg, #00ff88, #00d673);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .attribute-selector {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .attribute-selector.show {
+            display: block;
+        }
+
+        .attribute-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .attribute-btn {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .attribute-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .attribute-btn.selected {
+            background: linear-gradient(45deg, #00ff88, #00d673);
+        }
+
+        .score-board {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .winner-announcement {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #000;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -180,11 +275,33 @@
             <div><strong>Game State:</strong> <span id="game-state">None</span></div>
         </div>
 
+        <div id="turn-indicator" class="turn-indicator" style="display: none;">
+            <span id="turn-text">Waiting for game to start...</span>
+        </div>
+
+        <div id="winner-announcement" class="winner-announcement" style="display: none;">
+            🎉 <span id="winner-text"></span> won the last round! 🎉
+        </div>
+
         <div class="controls">
             <button onclick="joinGame()">🎮 Join Game</button>
             <button onclick="connectWebSocket()" id="connect-btn">🔌 Connect WebSocket</button>
-            <button onclick="playSelectedCard()" id="play-card-btn" disabled>🃏 Play Selected Card</button>
+            <button onclick="showAttributeSelector()" id="play-card-btn" disabled>🃏 Play Selected Card</button>
             <button onclick="clearLog()">🧹 Clear Log</button>
+        </div>
+
+        <div id="attribute-selector" class="attribute-selector">
+            <h4>🎯 Choose which attribute to compete on:</h4>
+            <div class="attribute-buttons">
+                <button class="attribute-btn" onclick="selectAttribute('boardingTime')">🛫 Boarding Time</button>
+                <button class="attribute-btn" onclick="selectAttribute('estimatedLanding')">🛬 Landing Time</button>
+                <button class="attribute-btn" onclick="selectAttribute('flightNumber')">✈️ Flight Number</button>
+                <button class="attribute-btn" onclick="selectAttribute('seatNumber')">💺 Seat Number</button>
+            </div>
+            <div style="margin-top: 15px;">
+                <button onclick="confirmPlayCard()" id="confirm-play-btn" disabled style="background: linear-gradient(45deg, #00ff88, #00d673);">✅ Confirm Play</button>
+                <button onclick="cancelPlayCard()" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); margin-left: 10px;">❌ Cancel</button>
+            </div>
         </div>
 
         <div class="game-area">
@@ -199,6 +316,11 @@
                 <h3>🎯 Game State</h3>
                 <div id="game-info">
                     <p>Not in a game yet.</p>
+                </div>
+
+                <div id="score-board" class="score-board" style="display: none;">
+                    <h4>🏆 Scores</h4>
+                    <div id="scores-container"></div>
                 </div>
 
                 <div class="players" id="players-container">
@@ -220,6 +342,8 @@
         let partyId = null;
         let selectedCard = null;
         let currentGameState = null;
+        let selectedAttribute = null;
+        let isMyTurn = false;
 
         function log(message, type = 'info') {
             const logElement = document.getElementById('log');
@@ -298,10 +422,19 @@
 
             const myPlayer = gameState.players.find(p => p.id === playerId);
             if (myPlayer) {
+                isMyTurn = myPlayer.yourTurn;
                 updateCards(myPlayer.cards);
+                updateTurnIndicator(gameState);
             }
 
             updatePlayers(gameState.players);
+            updateScoreBoard(gameState.players);
+
+            if (gameState.lastRoundWinner) {
+                showWinnerAnnouncement(gameState.lastRoundWinner, gameState.players);
+            } else {
+                hideWinnerAnnouncement();
+            }
         }
 
         function updateCards(cards) {
@@ -315,8 +448,11 @@
 
             cards.forEach(card => {
                 const cardElement = document.createElement('div');
-                cardElement.className = 'card';
-                cardElement.onclick = () => selectCard(card, cardElement);
+                cardElement.className = 'card' + (isMyTurn ? ' your-turn' : '');
+
+                if (isMyTurn) {
+                    cardElement.onclick = () => selectCard(card, cardElement);
+                }
 
                 const departureTime = new Date(card.boardingTime).toLocaleString();
                 const arrivalTime = new Date(card.estimatedLanding).toLocaleString();
@@ -339,6 +475,11 @@
         }
 
         function selectCard(card, element) {
+            if (!isMyTurn) {
+                log('⚠️ Not your turn!', 'error');
+                return;
+            }
+
             document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
             element.classList.add('selected');
             selectedCard = card;
@@ -355,13 +496,14 @@
                 playerElement.className = 'player' + (player.id === playerId ? ' you' : '');
 
                 const isYou = player.id === playerId ? ' (YOU)' : '';
+                const turnIndicator = player.yourTurn ? ' 🔥 YOUR TURN' : '';
                 const playedCard = player.playedCard ?
                     `🃏 Played: ${player.playedCard.flightNumber}` :
-                    '⏳ Waiting...';
+                    (player.yourTurn ? '🎯 Choosing...' : '⏳ Waiting...');
 
                 playerElement.innerHTML = `
-                    <div><strong>Player ${player.id.substring(0, 8)}...${isYou}</strong></div>
-                    <div>🎴 Cards: ${player.cards.length}</div>
+                    <div><strong>Player ${player.id.substring(0, 8)}...${isYou}${turnIndicator}</strong></div>
+                    <div>🎴 Cards: ${player.cards.length} | 🏆 Score: ${player.score}</div>
                     <div>${playedCard}</div>
                 `;
 
@@ -369,18 +511,51 @@
             });
         }
 
-        async function playSelectedCard() {
+        function showAttributeSelector() {
             if (!selectedCard || !partyId || !playerId) {
                 log('❌ No card selected or not in a game', 'error');
                 return;
             }
 
+            if (!isMyTurn) {
+                log('⚠️ Not your turn!', 'error');
+                return;
+            }
+
+            document.getElementById('attribute-selector').classList.add('show');
+            log(`🎯 Choose attribute for card: ${selectedCard.flightNumber}`, 'info');
+        }
+
+        function selectAttribute(attribute) {
+            document.querySelectorAll('.attribute-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+            selectedAttribute = attribute;
+            document.getElementById('confirm-play-btn').disabled = false;
+            log(`📊 Selected attribute: ${attribute}`, 'info');
+        }
+
+        function cancelPlayCard() {
+            document.getElementById('attribute-selector').classList.remove('show');
+            selectedAttribute = null;
+            document.getElementById('confirm-play-btn').disabled = true;
+            document.querySelectorAll('.attribute-btn').forEach(btn => btn.classList.remove('selected'));
+        }
+
+        async function confirmPlayCard() {
+            if (!selectedCard || !selectedAttribute || !partyId || !playerId) {
+                log('❌ Missing required selections', 'error');
+                return;
+            }
+
             try {
-                log(`🃏 Playing card: ${selectedCard.flightNumber}`, 'info');
+                log(`🃏 Playing card: ${selectedCard.flightNumber} with attribute: ${selectedAttribute}`, 'info');
 
                 const update = {
                     yourId: playerId,
-                    playCard: selectedCard
+                    playCard: {
+                        attribute: selectedAttribute,
+                        playedCard: selectedCard
+                    }
                 };
 
                 const response = await fetch(`/party/${partyId}/update`, {
@@ -394,14 +569,87 @@
                 if (response.ok) {
                     log('✅ Card played successfully!', 'success');
                     selectedCard = null;
+                    selectedAttribute = null;
                     document.getElementById('play-card-btn').disabled = true;
+                    document.getElementById('confirm-play-btn').disabled = true;
                     document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+                    document.querySelectorAll('.attribute-btn').forEach(btn => btn.classList.remove('selected'));
+                    cancelPlayCard();
                 } else {
                     log('❌ Failed to play card', 'error');
                 }
             } catch (error) {
                 log(`❌ Error playing card: ${error.message}`, 'error');
             }
+        }
+
+        function updateTurnIndicator(gameState) {
+            const indicator = document.getElementById('turn-indicator');
+            const turnText = document.getElementById('turn-text');
+
+            if (gameState.state === 'WAITING_FOR_CARDS') {
+                indicator.style.display = 'block';
+
+                if (isMyTurn) {
+                    indicator.classList.add('your-turn');
+                    turnText.textContent = '🔥 YOUR TURN - Choose a card and attribute!';
+                } else {
+                    indicator.classList.remove('your-turn');
+                    const currentPlayer = gameState.players.find(p => p.yourTurn);
+                    if (currentPlayer) {
+                        turnText.textContent = `⏳ Waiting for Player ${currentPlayer.id.substring(0, 8)}... to play`;
+                    } else {
+                        turnText.textContent = '⏳ Waiting for next round...';
+                    }
+                }
+            } else {
+                indicator.style.display = 'none';
+            }
+        }
+
+        function updateScoreBoard(players) {
+            const scoreBoard = document.getElementById('score-board');
+            const scoresContainer = document.getElementById('scores-container');
+
+            if (players.length > 0) {
+                scoreBoard.style.display = 'block';
+                scoresContainer.innerHTML = '';
+
+                const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
+
+                sortedPlayers.forEach((player, index) => {
+                    const scoreElement = document.createElement('div');
+                    const isYou = player.id === playerId ? ' (YOU)' : '';
+                    const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '🎯';
+
+                    scoreElement.innerHTML = `
+                        ${medal} Player ${player.id.substring(0, 8)}...${isYou}: ${player.score} points
+                    `;
+                    scoreElement.style.marginBottom = '5px';
+
+                    scoresContainer.appendChild(scoreElement);
+                });
+            }
+        }
+
+        function showWinnerAnnouncement(winnerId, players) {
+            const announcement = document.getElementById('winner-announcement');
+            const winnerText = document.getElementById('winner-text');
+
+            const winner = players.find(p => p.id === winnerId);
+            if (winner) {
+                const isYou = winner.id === playerId ? 'YOU' : `Player ${winner.id.substring(0, 8)}...`;
+                winnerText.textContent = isYou;
+                announcement.style.display = 'block';
+
+                setTimeout(() => {
+                    hideWinnerAnnouncement();
+                }, 5000);
+            }
+        }
+
+        function hideWinnerAnnouncement() {
+            document.getElementById('winner-announcement').style.display = 'none';
         }
 
         function clearLog() {

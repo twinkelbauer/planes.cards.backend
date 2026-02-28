@@ -44,7 +44,7 @@ class GameStateService(
         )
 
         val updatedPlayers = party.players + newPlayer
-        val updatedParty = party.copy(players = updatedPlayers)
+        var updatedParty = party.copy(players = updatedPlayers)
 
         parties[partyId] = updatedParty
         playerParties[playerId] = partyId
@@ -57,7 +57,7 @@ class GameStateService(
                 updatedPlayers.size
             )
 
-            parties[partyId] = updatedParty.copy(
+            updatedParty = updatedParty.copy(
                 players = updatedParty.players.mapIndexed { index, player ->
                     player.copy(
                         cards = generateCardsService.generateCards(),
@@ -155,6 +155,7 @@ class GameStateService(
 
                 logger.info("Round complete! Winner: {} (Score: {})", winner.id.substring(0, 8), winner.score + 1)
             } else {
+                logger.info("Player with id {} is empty", player.id)
                 // Just update with played card, waiting for other players
                 val updatedParty = party.copy(players = updatedPlayers)
                 parties[partyId] = updatedParty
