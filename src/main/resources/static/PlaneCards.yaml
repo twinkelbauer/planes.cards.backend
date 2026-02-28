@@ -144,7 +144,10 @@ components:
         - boardingTime
         - estimatedLanding
         - seatNumber
+        - id
       properties:
+        id:
+          type: string
         aircraft:
           type: string
           example: "BOEING 747 MEGA LARGE"
