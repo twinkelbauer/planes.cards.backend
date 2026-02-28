@@ -65,6 +65,7 @@ class GameStateService(
                     )
                 }
             )
+            parties[partyId] = updatedParty
 
             currentWaitingParty = null
         }
@@ -114,30 +115,39 @@ class GameStateService(
             val player = requireNotNull(party.players.find { it.id == update.yourId })
 
             // check if player is allowed to play
-            if (player.playedCard != null) {
+            if (player.playedCard != null && !player.yourTurn) {
                 logger.info("Player {} already played {}", player.id, player.playedCard.flightNumber)
                 return false
             }
 
             // Remove the played card from player's hand immediately
-            val updatedPlayers = party.players.map { player ->
+            var updatedPlayers = party.players.map { player ->
                 if (player.id == playerId) {
                     player.copy(
                         playedCard = update.playCard.playedCard,
-                        cards = player.cards.filter { it != update.playCard }
+                        cards = player.cards.filter { it != update.playCard },
+                        yourTurn = false
                     )
-                } else player
+                } else {
+                    player.copy(
+                        yourTurn = true,
+                    )
+                }
             }
 
             val allPlayersPlayed = updatedPlayers.all { it.playedCard != null }
 
+
             if (allPlayersPlayed) {
+                // Toggle when you weren't first the last time
+                updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
                 // BATTLE TIME! 🔥 Determine round winner and update scores
                 val winner = determineRoundWinner(updatedPlayers)
                 val finalPlayers = updatedPlayers.map { player ->
                     player.copy(
                         score = if (player.id == winner.id) player.score + 1 else player.score,
-                        playedCard = null // Clear played cards immediately after battle
+                        playedCard = null,// Clear played cards immediately after battle
+                        cards = player.cards.filterNot { it == requireNotNull(player.playedCard) }
                     )
                 }
 
