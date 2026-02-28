@@ -57,10 +57,14 @@ class GameStateService(
                 updatedPlayers.size
             )
 
+            val (left, right) = generateCardsService.generateCards().let {
+                val maxSize = it.size / 2
+                it.slice(0 until maxSize) to it.slice(maxSize until it.size)
+            }
             updatedParty = updatedParty.copy(
                 players = updatedParty.players.mapIndexed { index, player ->
                     player.copy(
-                        cards = generateCardsService.generateCards(),
+                        cards = if (index == 0) left else right,
                         yourTurn = index == 0,
                     )
                 },
