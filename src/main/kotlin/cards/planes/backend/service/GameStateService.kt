@@ -122,6 +122,14 @@ class GameStateService(
         logger.info("Player {} updating party {} with: {}", playerId, partyId, update)
 
         if (update.playCard != null) {
+            val player = requireNotNull(party.players.find { it.id == update.yourId })
+
+            // check if player is allowed to play
+            if (player.playedCard != null) {
+                logger.info("Player {} already played {}", player.id, player.playedCard.flightNumber)
+                return false
+            }
+
             // Remove the played card from player's hand immediately
             val updatedPlayers = party.players.map { player ->
                 if (player.id == playerId) {

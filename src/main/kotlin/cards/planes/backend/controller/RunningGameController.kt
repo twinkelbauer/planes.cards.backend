@@ -4,6 +4,7 @@ import cards.planes.backend.service.GameStateService
 import cards.planes.generated.apis.RunningGameApi
 import cards.planes.generated.models.PartyClientUpdate
 import org.slf4j.LoggerFactory
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.http.ResponseEntity
 import org.springframework.messaging.handler.annotation.DestinationVariable
 import org.springframework.messaging.handler.annotation.MessageMapping

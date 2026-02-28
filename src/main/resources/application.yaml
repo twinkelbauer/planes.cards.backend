@@ -3,3 +3,13 @@ server:
 spring:
   application:
     name: planes-backend
+
+  datasource:
+    url: "jdbc:postgresql://postgres:5432/appdb"
+    username: "appuser"
+    password: "apppas"
+
+  jpa:
+    hibernate:
+      ddl:
+        auto: update
