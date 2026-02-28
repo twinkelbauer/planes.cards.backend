@@ -164,7 +164,7 @@ class GameStateService(
                 updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
 
                 val gameEnded = updatedPlayers.any { it.cards.isEmpty() }
-                val newState = if (gameEnded) GameState.ENDING else GameState.WAITING
+                val newState = if (gameEnded) GameState.ENDING else GameState.WAITING_FOR_CARDS
 
                 val updatedParty = party.copy(
                     players = updatedPlayers,
