@@ -45,12 +45,12 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
 
 lufthansa:
-  client-id: ${LUFTHANSA_CLIENT_ID:}
-  client-secret: ${LUFTHANSA_CLIENT_SECRET:}
+  client-id: ${LUFTHANSA_CLIENT_ID:74ypmwy4bdsaxx2c6hjc66jbj}
+  client-secret: ${LUFTHANSA_CLIENT_SECRET:9y3upVx3We}
   base-url: https://api.lufthansa.com
   airports: FRA,MUC,HAM,BER
   airlines: LH
-  fetch-days-ahead: 7
+  fetch-days-ahead: 1
   boarding-offset-minutes: 40
   schedule:
     fetch-cron: "0 0 */4 * * *"

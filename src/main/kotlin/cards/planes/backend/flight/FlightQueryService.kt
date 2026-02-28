@@ -36,6 +36,10 @@ class FlightQueryService {
             .map { it.toDto() }
     }
 
+    fun hasFlights(): Boolean = transaction {
+        !FlightEntity.all().empty()
+    }
+
     fun deleteExpiredFlights(): Int = transaction {
         val now = Clock.System.now()
         val count = FlightTable.deleteWhere { departureTime less now }

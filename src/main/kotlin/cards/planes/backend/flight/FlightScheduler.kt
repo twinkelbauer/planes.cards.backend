@@ -4,6 +4,8 @@ import cards.planes.backend.config.LufthansaProperties
 import org.openapitools.client.api.ScheduleApi
 import org.openapitools.client.model.TimeMode
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import java.time.LocalDate
@@ -21,6 +23,14 @@ class FlightScheduler(
 
     private val ssimDateFormat = DateTimeFormatter.ofPattern("ddMMMyy", Locale.ENGLISH)
     private val allDays = "1234567"
+
+    @EventListener(ApplicationReadyEvent::class)
+    fun onStartup() {
+        if (!queryService.hasFlights()) {
+            log.info("No flights in database, performing initial fetch")
+            fetchFlights()
+        }
+    }
 
     @Scheduled(cron = "\${lufthansa.schedule.fetch-cron}")
     fun fetchFlights() {
@@ -47,6 +57,7 @@ class FlightScheduler(
                 val count = ingestionService.ingest(aggregates)
                 log.info("Ingested {} new flights for airport {}", count, airport)
             } catch (e: Exception) {
+                log.error(e.stackTraceToString())
                 log.error("Failed to fetch flights for airport {}: {}", airport, e.message)
             }
         }
