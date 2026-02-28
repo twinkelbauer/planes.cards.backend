@@ -1,22 +1,26 @@
 package cards.planes.backend.config
 
+import io.micrometer.core.instrument.Counter
+import io.micrometer.core.instrument.Meter
 import io.micrometer.core.instrument.MeterRegistry
 import io.micrometer.core.instrument.Timer
+import jakarta.servlet.FilterChain
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
-import org.springframework.boot.actuate.web.exchanges.HttpExchange
 import org.springframework.boot.actuate.web.exchanges.HttpExchangeRepository
 import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.filter.OncePerRequestFilter
-import jakarta.servlet.FilterChain
-import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpServletResponse
 
 @Configuration
 class MetricsConfig {
 
-    private val logger = LoggerFactory.getLogger(MetricsConfig::class.java)
+    companion object {
+        private val logger = LoggerFactory.getLogger(MetricsConfig::class.java)
+        lateinit var partyCounter: Counter
+    }
 
     @Bean
     fun httpExchangeRepository(): HttpExchangeRepository {
@@ -25,6 +29,10 @@ class MetricsConfig {
 
     @Bean
     fun requestLoggingFilter(meterRegistry: MeterRegistry): OncePerRequestFilter {
+        partyCounter = Counter.builder("running_parties")
+            .description("Counts the number of parties")
+            .register(meterRegistry)
+
         return object : OncePerRequestFilter() {
             override fun doFilterInternal(
                 request: HttpServletRequest,
@@ -47,7 +55,11 @@ class MetricsConfig {
                     )
 
                     logger.info(
-                        "HTTP Request: ${request.method} ${request.requestURI} - Status: ${response.status} - Duration: ${duration}ms - User-Agent: ${request.getHeader("User-Agent") ?: "Unknown"} - Remote IP: ${getClientIpAddress(request)}"
+                        "HTTP Request: ${request.method} ${request.requestURI} - Status: ${response.status} - Duration: ${duration}ms - User-Agent: ${
+                            request.getHeader(
+                                "User-Agent"
+                            ) ?: "Unknown"
+                        } - Remote IP: ${getClientIpAddress(request)}"
                     )
                 }
             }
