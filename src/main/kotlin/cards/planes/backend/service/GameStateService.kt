@@ -112,6 +112,10 @@ class GameStateService(
         }
     }
 
+    fun publishAll() {
+        parties.forEach { party -> getPartyState(party.key) }
+    }
+
     fun updateParty(partyId: String, playerId: String, update: PartyClientUpdate): Boolean {
         val party = parties[partyId] ?: return false
 
