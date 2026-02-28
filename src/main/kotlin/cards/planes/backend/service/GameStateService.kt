@@ -1,9 +1,7 @@
 package cards.planes.backend.service
 
-import cards.planes.backend.Calculator
 import cards.planes.backend.config.MetricsConfig
 import cards.planes.generated.models.*
-import io.micrometer.core.instrument.Counter
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
@@ -65,7 +63,8 @@ class GameStateService(
                         cards = generateCardsService.generateCards(),
                         yourTurn = index == 0,
                     )
-                }
+                },
+                state = GameState.WAITING_FOR_CARDS,
             )
             parties[partyId] = updatedParty
 
