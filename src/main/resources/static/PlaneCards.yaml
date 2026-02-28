@@ -9,6 +9,8 @@ paths:
   /health:
     get:
       operationId: health
+      tags:
+        - health
       responses:
         200:
           description: "Health check"
@@ -24,6 +26,8 @@ paths:
   /party/join:
     get:
       operationId: joinGame
+      tags:
+        - pre-game
       responses:
         200:
           description: "Join party"
@@ -35,6 +39,8 @@ paths:
   /party/{partyId}:
     get:
       operationId: getPartyUpdates
+      tags:
+        - running-game
       summary: "Get Game Updates via websocket"
       parameters:
         - in: path
@@ -50,6 +56,8 @@ paths:
   /party/{partyId}/update:
     post:
       operationId: sendPartyUpdates
+      tags:
+        - running-game
       summary: "Client updates party"
       parameters:
         - in: path

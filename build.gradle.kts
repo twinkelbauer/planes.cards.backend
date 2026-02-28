@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.spring") version "2.2.21"
     id("org.springframework.boot") version "4.0.3"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.openapi.generator") version "7.20.0"
 }
 
 group = "cards.planes"
@@ -13,6 +14,18 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(24)
     }
+}
+
+openApiGenerate {
+    generatorName.set("kotlin-spring")
+    inputSpec.set("$rootDir/src/main/resources/static/PlaneCards.yaml")
+    packageName.set("cards.planes.generated")
+    additionalProperties.set(
+        mapOf(
+            "requestMappingMode" to "none",
+            "library" to "spring-declarative-http-interface"
+        )
+    )
 }
 
 configurations {
@@ -49,6 +62,11 @@ dependencies {
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
+    }
+    sourceSets{
+        main {
+            kotlin.srcDir("${rootDir}/build/generate-resources/main/src/main/kotlin")
+        }
     }
 }
 
