@@ -45,7 +45,7 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
 
 gemini:
-  service-account-key: ${GEMINI_SA_KEY:}
+  service.account.key: ${GEMINI_SA_KEY:}
   project: ${GEMINI_PROJECT:}
   location: us-central1
   model: gemini-2.5-flash
