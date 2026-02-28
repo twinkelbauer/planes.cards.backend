@@ -34,7 +34,7 @@ services:
     container_name: planes-prometheus
     restart: always
     ports:
-      - "9090:9090"
+      - "9091:9091"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
@@ -71,3 +71,4 @@ volumes:
 networks:
   planes-network:
     driver: bridge
+    internal: true
