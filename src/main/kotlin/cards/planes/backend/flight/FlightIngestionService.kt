@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
 import java.util.Locale
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
@@ -25,7 +26,10 @@ class FlightIngestionService(
 ) {
     private val log = LoggerFactory.getLogger(javaClass)
 
-    private val ssimDateFormat = DateTimeFormatter.ofPattern("ddMMMyy", Locale.ENGLISH)
+    private val ssimDateFormat = DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendPattern("ddMMMyy")
+        .toFormatter(Locale.ENGLISH)
 
     fun ingest(aggregates: List<FlightAggregate>): Int {
         var count = 0

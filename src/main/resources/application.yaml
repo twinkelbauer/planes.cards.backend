@@ -50,7 +50,7 @@ lufthansa:
   base-url: https://api.lufthansa.com
   airports: FRA,MUC,HAM,BER
   airlines: LH
-  fetch-days-ahead: 7
+  fetch-days-ahead: 1
   boarding-offset-minutes: 40
   schedule:
     fetch-cron: "0 0 */4 * * *"
