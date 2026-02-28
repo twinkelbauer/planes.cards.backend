@@ -59,7 +59,13 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:1.1.1")
     implementation("org.jetbrains.exposed:exposed-dao:1.1.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:1.1.1")
+    implementation("org.jetbrains.exposed:exposed-kotlin-datetime:1.1.1")
     implementation("com.h2database:h2:2.4.240")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
+
+    implementation(project(":lufthansa-client"))
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 }
 
 kotlin {
@@ -83,4 +89,20 @@ tasks.compileKotlin.configure {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+openApiGenerate {
+    generatorName.set("java")
+    library.set("webclient")
+
+    inputSpec.set("$projectDir/src/main/resources/lh-flight-schedules.json")
+    outputDir.set("$rootDir/lufthansa-client")
+
+    packageName.set("cards.planes.backend.generated.lufthansa")
+
+    additionalProperties.set(
+        mapOf(
+            "dateLibrary" to "java8",
+        )
+    )
 }

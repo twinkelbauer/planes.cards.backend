@@ -43,3 +43,15 @@ logging:
     org.springframework.web: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+lufthansa:
+  client-id: ${LUFTHANSA_CLIENT_ID:}
+  client-secret: ${LUFTHANSA_CLIENT_SECRET:}
+  base-url: https://api.lufthansa.com
+  airports: FRA,MUC,HAM,BER
+  airlines: LH
+  fetch-days-ahead: 7
+  boarding-offset-minutes: 40
+  schedule:
+    fetch-cron: "0 0 */4 * * *"
+    cleanup-cron: "0 0 1 * * *"

@@ -1,0 +1,892 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: api.support@lufthansa.com
+    name: Lufthansa Group API Support
+  description: "This API provides Lufthansa's flight schedule information.\n\nA search\
+    \ functionality is available based on a number of criteria:\n  * airlines\n  *\
+    \ flight number\n  * start and end date\n  * days of operation\n  * origin and\
+    \ destination\n  * aircraft types\n  \nDepending on access it enables to view\
+    \ passenger flights, cargo flights or both.\n\nThe flights returned are date-wise\
+    \ aggregated. \nTheir structure and attributes follow the standards and definitions\
+    \ provided by the IATA Standard Schedules Information Manual (SSIM, Chapter 2).\n"
+  title: Flight Schedules API
+  version: 1.0.0
+servers:
+- url: https://api.lufthansa.com/v1/flight-schedules
+tags:
+- description: Flight schedule information
+  name: schedule
+paths:
+  /flightschedules/passenger:
+    get:
+      description: |-
+        This operation returns schedules related only to passenger flights.
+        In case a flight is marked both as cargo and passenger it will also be returned.
+      parameters:
+      - description: The list of airline codes
+        explode: true
+        in: query
+        name: airlines
+        required: true
+        schema:
+          items:
+            $ref: "#/components/schemas/Airline"
+          type: array
+        style: form
+      - description: "The flight number range filter string. e.g.: '-100, 200, 100-200,\
+          \ 300-'"
+        explode: true
+        in: query
+        name: flightNumberRanges
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The period start date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: startDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: The period end date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: "The days of operation, i.e. the days of the week. Whitespace\
+          \ padded to 7 chars. E.g.: '  34 6 '"
+        explode: true
+        in: query
+        name: daysOfOperation
+        required: true
+        schema:
+          $ref: "#/components/schemas/DaysOfOperation"
+        style: form
+      - description: The time mode of the period of operations
+        explode: true
+        in: query
+        name: timeMode
+        required: true
+        schema:
+          $ref: "#/components/schemas/TimeMode"
+        style: form
+      - description: Search for flights departing from this station. 3 letter IATA
+          airport code.
+        explode: true
+        in: query
+        name: origin
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: Search for flights arriving at this station. 3 letter IATA airport
+          code.
+        explode: true
+        in: query
+        name: destination
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: The list of aircraft types
+        explode: true
+        in: query
+        name: aircraftTypes
+        required: false
+        schema:
+          items:
+            $ref: "#/components/schemas/AircraftType"
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Successful operation
+        "206":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Result truncated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication required
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Flight not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Server error
+      security:
+      - Bearer: []
+      summary: Returns passenger flights
+      tags:
+      - schedule
+      x-accepts:
+      - application/json
+  /flightschedules/cargo:
+    get:
+      description: |-
+        This operation returns schedules related to cargo flights only.
+        In case a flight is marked both as cargo and passenger it will also be returned.
+      parameters:
+      - description: The list of airline codes
+        explode: true
+        in: query
+        name: airlines
+        required: true
+        schema:
+          items:
+            $ref: "#/components/schemas/Airline"
+          type: array
+        style: form
+      - description: "The flight number range filter string. e.g.: '-100, 200, 100-200,\
+          \ 300-'"
+        explode: true
+        in: query
+        name: flightNumberRanges
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The period start date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: startDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: The period end date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: "The days of operation, i.e. the days of the week. Whitespace\
+          \ padded to 7 chars. E.g.: '  34 6 '"
+        explode: true
+        in: query
+        name: daysOfOperation
+        required: true
+        schema:
+          $ref: "#/components/schemas/DaysOfOperation"
+        style: form
+      - description: The time mode of the period of operations
+        explode: true
+        in: query
+        name: timeMode
+        required: true
+        schema:
+          $ref: "#/components/schemas/TimeMode"
+        style: form
+      - description: Search for flights departing from this station. 3 letter IATA
+          airport code.
+        explode: true
+        in: query
+        name: origin
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: Search for flights arriving at this station. 3 letter IATA airport
+          code.
+        explode: true
+        in: query
+        name: destination
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: The list of aircraft types
+        explode: true
+        in: query
+        name: aircraftTypes
+        required: false
+        schema:
+          items:
+            $ref: "#/components/schemas/AircraftType"
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Successful operation
+        "206":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Result truncated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication required
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Flight not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Server error
+      security:
+      - Bearer: []
+      summary: Returns cargo flights
+      tags:
+      - schedule
+      x-accepts:
+      - application/json
+  /flightschedules:
+    get:
+      description: Returns information about all flights based on available search
+        criteria. Some criteria are mandatory to make a call to the API.
+      parameters:
+      - description: The list of airline codes
+        explode: true
+        in: query
+        name: airlines
+        required: true
+        schema:
+          items:
+            $ref: "#/components/schemas/Airline"
+          type: array
+        style: form
+      - description: "The flight number range filter string. e.g.: '-100, 200, 100-200,\
+          \ 300-'"
+        explode: true
+        in: query
+        name: flightNumberRanges
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The period start date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: startDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: The period end date. SSIM date format DDMMMYY
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          $ref: "#/components/schemas/SSIMDate"
+        style: form
+      - description: "The days of operation, i.e. the days of the week. Whitespace\
+          \ padded to 7 chars. E.g.: '  34 6 '"
+        explode: true
+        in: query
+        name: daysOfOperation
+        required: true
+        schema:
+          $ref: "#/components/schemas/DaysOfOperation"
+        style: form
+      - description: The time mode of the period of operations
+        explode: true
+        in: query
+        name: timeMode
+        required: true
+        schema:
+          $ref: "#/components/schemas/TimeMode"
+        style: form
+      - description: Search for flights departing from this station. 3 letter IATA
+          airport code.
+        explode: true
+        in: query
+        name: origin
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: Search for flights arriving at this station. 3 letter IATA airport
+          code.
+        explode: true
+        in: query
+        name: destination
+        required: false
+        schema:
+          $ref: "#/components/schemas/Airport"
+        style: form
+      - description: The list of aircraft types
+        explode: true
+        in: query
+        name: aircraftTypes
+        required: false
+        schema:
+          items:
+            $ref: "#/components/schemas/AircraftType"
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Successful operation
+        "206":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FlightResponse"
+          description: Result truncated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication required
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Flight not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Server error
+      security:
+      - Bearer: []
+      summary: Search all flights
+      tags:
+      - schedule
+      x-accepts:
+      - application/json
+components:
+  parameters:
+    airlines:
+      description: The list of airline codes
+      explode: true
+      in: query
+      name: airlines
+      required: true
+      schema:
+        items:
+          $ref: "#/components/schemas/Airline"
+        type: array
+      style: form
+    flightNumberRanges:
+      description: "The flight number range filter string. e.g.: '-100, 200, 100-200,\
+        \ 300-'"
+      explode: true
+      in: query
+      name: flightNumberRanges
+      required: false
+      schema:
+        type: string
+      style: form
+    startDate:
+      description: The period start date. SSIM date format DDMMMYY
+      explode: true
+      in: query
+      name: startDate
+      required: true
+      schema:
+        $ref: "#/components/schemas/SSIMDate"
+      style: form
+    endDate:
+      description: The period end date. SSIM date format DDMMMYY
+      explode: true
+      in: query
+      name: endDate
+      required: true
+      schema:
+        $ref: "#/components/schemas/SSIMDate"
+      style: form
+    daysOfOperation:
+      description: "The days of operation, i.e. the days of the week. Whitespace padded\
+        \ to 7 chars. E.g.: '  34 6 '"
+      explode: true
+      in: query
+      name: daysOfOperation
+      required: true
+      schema:
+        $ref: "#/components/schemas/DaysOfOperation"
+      style: form
+    timeMode:
+      description: The time mode of the period of operations
+      explode: true
+      in: query
+      name: timeMode
+      required: true
+      schema:
+        $ref: "#/components/schemas/TimeMode"
+      style: form
+    origin:
+      description: Search for flights departing from this station. 3 letter IATA airport
+        code.
+      explode: true
+      in: query
+      name: origin
+      required: false
+      schema:
+        $ref: "#/components/schemas/Airport"
+      style: form
+    destination:
+      description: Search for flights arriving at this station. 3 letter IATA airport
+        code.
+      explode: true
+      in: query
+      name: destination
+      required: false
+      schema:
+        $ref: "#/components/schemas/Airport"
+      style: form
+    aircraftTypes:
+      description: The list of aircraft types
+      explode: true
+      in: query
+      name: aircraftTypes
+      required: false
+      schema:
+        items:
+          $ref: "#/components/schemas/AircraftType"
+        type: array
+      style: form
+  schemas:
+    AircraftType:
+      description: "The fleet type identifier 3 characters, can contain letters and\
+        \ numbers."
+      example: "744"
+      pattern: "^[0-9A-Z]{3}$"
+      type: string
+    Airport:
+      description: Airport represented by a 3 letter IATA airport code
+      example: FRA
+      pattern: "^[A-Z]{3}$"
+      type: string
+    Airline:
+      description: The airline code of the flight
+      example: LH
+      pattern: "^[0-9A-Z]{2,3}$"
+      type: string
+    DaysOfOperation:
+      description: String representation of the days of operation (weekdays) in the
+        format 'fffffff' with whitespace padding
+      example: "1234567"
+      pattern: "^[0-9 ]{7}$"
+      type: string
+    FlightNumber:
+      description: The flight number
+      maximum: 9999
+      minimum: 1
+      type: integer
+    ServiceType:
+      description: Service type identifying whether the flight is a passenger or cargo
+        flight (or something else). An uppercase letter.
+      example: J
+      pattern: "^[A-Z]{1}$"
+      type: string
+    SSIMDate:
+      description: A date represented in the format 'DDMMMYY'
+      example: 01JAN19
+      pattern: "^[0-9]{2}[A-Z]{3}[0-9]{2}$"
+      type: string
+    Suffix:
+      description: Operational suffix. One character or empty string.
+      pattern: "^[A-Z]{0,1}$"
+      type: string
+    TimeMode:
+      description: The intended time mode. Either Universal Time Coordinated (UTC)
+        or Local Time (LT)
+      enum:
+      - UTC
+      - LT
+      type: string
+    PeriodOfOperation:
+      description: "The combination of start date, end date and a weekday pattern"
+      example:
+        daysOfOperation: "1234567"
+        endDate: ""
+        startDate: ""
+      properties:
+        startDate:
+          allOf:
+          - $ref: "#/components/schemas/SSIMDate"
+          description: The start date of this period in the format 'DDMMMYY'
+        endDate:
+          allOf:
+          - $ref: "#/components/schemas/SSIMDate"
+          description: The start date of this period in the format 'DDMMMYY'
+        daysOfOperation:
+          description: String representation of the days of operation (weekdays) in
+            the format 'fffffff' with whitespace padding
+          example: "1234567"
+          pattern: "^[0-9 ]{7}$"
+          type: string
+      required:
+      - daysOfOperation
+      - endDate
+      - startDate
+      type: object
+    DataElement:
+      description: |
+        A data element is an additional flight attribute as defined in SSIM, Chapter 2 dealing with a variety of characteristics, e.g.:
+        * Traffic Restriction: 8
+        * Codeshare - Duplicate leg cross-reference: 10
+        * Codeshare - Operational leg cross-reference: 50
+        * Departure Terminal: 99
+        * Arrival Terminal: 98
+        * Passenger Reservation Booking Designator (PRBD): 106
+        * Meal service note: 109
+        * Inflight Service: 503
+        * Electronic Ticket Indicator: 505
+        * etc.
+      example:
+        startLegSequenceNumber: 1
+        id: 149
+        endLegSequenceNumber: 1
+        value: value
+      properties:
+        startLegSequenceNumber:
+          description: The sequence number of the leg where data element boardpoint
+            belongs to
+          minimum: 1
+          type: integer
+        endLegSequenceNumber:
+          description: The sequence number of the leg where data element offpoint
+            belongs to
+          minimum: 1
+          type: integer
+        id:
+          description: "The data element identifier - see SSIM, Chapter 2 for additional\
+            \ information"
+          maximum: 999
+          minimum: 1
+          type: integer
+        value:
+          description: The data element value itself
+          pattern: "^([0-9A-Z]|\\s|/|-)*$"
+          type: string
+      required:
+      - endLegSequenceNumber
+      - id
+      - startLegSequenceNumber
+      type: object
+    Leg:
+      description: A flight's leg is a smaller part of an overall journey which involves
+        landing at an intermediate airport
+      example:
+        serviceType: ""
+        aircraftArrivalTimeDateDiffLT: 3
+        sequenceNumber: 1
+        op: true
+        aircraftArrivalTimeLT: 292
+        origin: ""
+        aircraftDepartureTimeUTC: 210
+        destination: ""
+        aircraftArrivalTimeUTC: 1339
+        aircraftArrivalTimeVariation: 7
+        aircraftConfigurationVersion: aircraftConfigurationVersion
+        aircraftDepartureTimeDateDiffUTC: 5
+        aircraftDepartureTimeLT: 811
+        aircraftType: "744"
+        aircraftDepartureTimeDateDiffLT: 1
+        aircraftDepartureTimeVariation: 7
+        aircraftOwner: ""
+        registration: registration
+        aircraftArrivalTimeDateDiffUTC: 2
+      properties:
+        sequenceNumber:
+          description: The sequence number of this leg in the associated itinerary
+          minimum: 1
+          type: integer
+        origin:
+          allOf:
+          - $ref: "#/components/schemas/Airport"
+          description: The departure airport code
+        destination:
+          allOf:
+          - $ref: "#/components/schemas/Airport"
+          description: The arrival airport code
+        serviceType:
+          allOf:
+          - $ref: "#/components/schemas/ServiceType"
+          description: The service type of the leg. An uppercase letter.
+        aircraftOwner:
+          allOf:
+          - $ref: "#/components/schemas/Airline"
+          description: The aircraft owner or administrative carrier (an airline code)
+            of the leg
+        aircraftType:
+          description: "The fleet type identifier 3 characters, can contain letters\
+            \ and numbers."
+          example: "744"
+          pattern: "^[0-9A-Z]{3}$"
+          type: string
+        aircraftConfigurationVersion:
+          description: The Aircraft Configuration/Version.
+          pattern: "^[A-Z0-9]*$"
+          type: string
+        registration:
+          description: Aircraft Registration Information
+          pattern: "^[A-Z0-9]*$"
+          type: string
+        op:
+          description: Signals whether this is an operating or a marketing leg
+          type: boolean
+        aircraftDepartureTimeUTC:
+          description: The UTC Aircraft Scheduled Time of Departure for this leg in
+            minutes
+          maximum: 1439
+          minimum: 0
+          type: integer
+        aircraftDepartureTimeDateDiffUTC:
+          description: The date difference between the flight UTC date and the aircraft
+            departure time of this leg in days.
+          maximum: 10
+          minimum: -1
+          type: integer
+        aircraftDepartureTimeLT:
+          description: The LT Aircraft Scheduled Time of Departure for this leg in
+            minutes
+          maximum: 1439
+          minimum: 0
+          type: integer
+        aircraftDepartureTimeDateDiffLT:
+          description: The date difference between the flight LT date and the aircraft
+            departure time of this leg in days.
+          maximum: 10
+          minimum: -1
+          type: integer
+        aircraftDepartureTimeVariation:
+          description: The departure time difference between the LT and UTC time in
+            minutes.
+          type: integer
+        aircraftArrivalTimeUTC:
+          description: The UTC Aircraft Scheduled Time of Arrival for this leg in
+            minutes
+          maximum: 1440
+          minimum: 1
+          type: integer
+        aircraftArrivalTimeDateDiffUTC:
+          description: The date difference between the flight UTC date and the aircraftarrival
+            time of this leg in days.
+          maximum: 10
+          minimum: -1
+          type: integer
+        aircraftArrivalTimeLT:
+          description: The LT Aircraft Scheduled Time of Arrival for this leg in minutes
+          maximum: 1440
+          minimum: 1
+          type: integer
+        aircraftArrivalTimeDateDiffLT:
+          description: The date difference between the flight LT date and the aircraft
+            arrival time of this leg in days.
+          maximum: 10
+          minimum: -1
+          type: integer
+        aircraftArrivalTimeVariation:
+          description: The arrival time difference between the LT and UTC time in
+            minutes.
+          type: integer
+      required:
+      - aircraftType
+      - destination
+      - origin
+      - sequenceNumber
+      - serviceType
+      type: object
+    FlightAggregate:
+      description: A FlightAggregate is a date-wise aggregation of otherwise single-dated
+        flights. I.e. flights with identical attributes are aggregated into periods
+        of operation.
+      example:
+        periodOfOperationLT:
+          daysOfOperation: "1234567"
+          endDate: ""
+          startDate: ""
+        legs:
+        - serviceType: ""
+          aircraftArrivalTimeDateDiffLT: 3
+          sequenceNumber: 1
+          op: true
+          aircraftArrivalTimeLT: 292
+          origin: ""
+          aircraftDepartureTimeUTC: 210
+          destination: ""
+          aircraftArrivalTimeUTC: 1339
+          aircraftArrivalTimeVariation: 7
+          aircraftConfigurationVersion: aircraftConfigurationVersion
+          aircraftDepartureTimeDateDiffUTC: 5
+          aircraftDepartureTimeLT: 811
+          aircraftType: "744"
+          aircraftDepartureTimeDateDiffLT: 1
+          aircraftDepartureTimeVariation: 7
+          aircraftOwner: ""
+          registration: registration
+          aircraftArrivalTimeDateDiffUTC: 2
+        - serviceType: ""
+          aircraftArrivalTimeDateDiffLT: 3
+          sequenceNumber: 1
+          op: true
+          aircraftArrivalTimeLT: 292
+          origin: ""
+          aircraftDepartureTimeUTC: 210
+          destination: ""
+          aircraftArrivalTimeUTC: 1339
+          aircraftArrivalTimeVariation: 7
+          aircraftConfigurationVersion: aircraftConfigurationVersion
+          aircraftDepartureTimeDateDiffUTC: 5
+          aircraftDepartureTimeLT: 811
+          aircraftType: "744"
+          aircraftDepartureTimeDateDiffLT: 1
+          aircraftDepartureTimeVariation: 7
+          aircraftOwner: ""
+          registration: registration
+          aircraftArrivalTimeDateDiffUTC: 2
+        airline: LH
+        suffix: suffix
+        periodOfOperationUTC:
+          daysOfOperation: "1234567"
+          endDate: ""
+          startDate: ""
+        dataElements:
+        - startLegSequenceNumber: 1
+          id: 149
+          endLegSequenceNumber: 1
+          value: value
+        - startLegSequenceNumber: 1
+          id: 149
+          endLegSequenceNumber: 1
+          value: value
+        flightNumber: 801
+      properties:
+        airline:
+          description: The airline code of the flight
+          example: LH
+          pattern: "^[0-9A-Z]{2,3}$"
+          type: string
+        flightNumber:
+          description: The flight number
+          maximum: 9999
+          minimum: 1
+          type: integer
+        suffix:
+          description: Operational suffix. One character or empty string.
+          pattern: "^[A-Z]{0,1}$"
+          type: string
+        periodOfOperationUTC:
+          $ref: "#/components/schemas/PeriodOfOperation"
+        periodOfOperationLT:
+          $ref: "#/components/schemas/PeriodOfOperation"
+        legs:
+          description: The legs
+          items:
+            $ref: "#/components/schemas/Leg"
+          type: array
+        dataElements:
+          description: The data elements
+          items:
+            $ref: "#/components/schemas/DataElement"
+          type: array
+      type: object
+    Message:
+      example:
+        level: INFO
+        text: text
+      properties:
+        text:
+          description: Message text
+          type: string
+        level:
+          $ref: "#/components/schemas/MessageLevel"
+      type: object
+    TechnicalMessage:
+      example:
+        text: text
+      properties:
+        text:
+          description: Message text
+          type: string
+      type: object
+    MessageLevel:
+      description: The level of messages retured by the REST API to the Client
+      enum:
+      - INFO
+      - WARNING
+      - ERROR
+      type: string
+    ErrorResponse:
+      example:
+        httpStatus: 6
+        messages:
+        - level: INFO
+          text: text
+        - level: INFO
+          text: text
+        technicalMessages:
+        - text: text
+        - text: text
+      properties:
+        httpStatus:
+          type: integer
+        messages:
+          items:
+            $ref: "#/components/schemas/Message"
+          type: array
+        technicalMessages:
+          items:
+            $ref: "#/components/schemas/TechnicalMessage"
+          type: array
+      type: object
+    FlightResponse:
+      items:
+        $ref: "#/components/schemas/FlightAggregate"
+      type: array
+
