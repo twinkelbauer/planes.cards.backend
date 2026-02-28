@@ -13,3 +13,33 @@ spring:
     hibernate:
       ddl:
         auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics,httpexchanges
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    web:
+      server:
+        request:
+          autotime:
+            enabled: true
+  httpexchanges:
+    recording:
+      enabled: true
+
+logging:
+  level:
+    cards.planes.backend.config.MetricsConfig: INFO
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
