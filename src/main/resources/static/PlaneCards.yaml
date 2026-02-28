@@ -116,10 +116,14 @@ components:
         - id
         - cards
         - score
+        - yourTurn
       properties:
         id:
           type: string
           example: "id"
+        yourTurn:
+          type: boolean
+          example: true
         playedCard:
           $ref: "#/components/schemas/GameCard"
         cards:
@@ -182,6 +186,17 @@ components:
           type: string
           example: "UUID"
         playCard:
-          $ref: "#/components/schemas/GameCard"
+          $ref: "#/components/schemas/PartyClientPlayedCard"
 
+    PartyClientPlayedCard:
+      type: object
+      required:
+        - attribute
+        - playedCard
+      properties:
+        attribute:
+          type: string
+          example: "flightNumber"
+        playedCard:
+          $ref: "#/components/schemas/GameCard"
 

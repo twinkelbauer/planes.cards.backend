@@ -5,10 +5,7 @@ import cards.planes.generated.models.*
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.random.Random
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -42,7 +39,8 @@ class GameStateService(
             id = playerId,
             cards = emptyList(),
             score = 0,
-            playedCard = null
+            playedCard = null,
+            yourTurn = false,
         )
 
         val updatedPlayers = party.players + newPlayer
@@ -60,8 +58,11 @@ class GameStateService(
             )
 
             parties[partyId] = updatedParty.copy(
-                players = updatedParty.players.map { player ->
-                    player.copy(cards = generateCardsService.generateCards())
+                players = updatedParty.players.mapIndexed { index, player ->
+                    player.copy(
+                        cards = generateCardsService.generateCards(),
+                        yourTurn = index == 0,
+                    )
                 }
             )
 
@@ -122,7 +123,7 @@ class GameStateService(
             val updatedPlayers = party.players.map { player ->
                 if (player.id == playerId) {
                     player.copy(
-                        playedCard = update.playCard,
+                        playedCard = update.playCard.playedCard,
                         cards = player.cards.filter { it != update.playCard }
                     )
                 } else player
