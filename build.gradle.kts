@@ -21,6 +21,7 @@ java {
 tasks.register<GenerateTask>("generateServer") {
     generatorName.set("kotlin-spring")
     inputSpec.set("$rootDir/src/main/resources/static/PlaneCards.yaml")
+    outputDir.set("$buildDir/generated/server")
     packageName.set("cards.planes.generated")
     additionalProperties.set(
         mapOf(
@@ -67,7 +68,7 @@ kotlin {
     }
     sourceSets {
         main {
-            kotlin.srcDir("${rootDir}/build/generate-resources/main/src/main/kotlin")
+            kotlin.srcDir("${rootDir}/build/generated/server/src/main/kotlin")
         }
     }
 }
