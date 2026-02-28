@@ -44,6 +44,12 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
 
+gemini:
+  service-account-key-path: ${GEMINI_SA_KEY_PATH:}
+  project: ${GEMINI_PROJECT:}
+  location: us-central1
+  model: gemini-2.5-flash
+
 lufthansa:
   client-id: ${LUFTHANSA_CLIENT_ID:74ypmwy4bdsaxx2c6hjc66jbj}
   client-secret: ${LUFTHANSA_CLIENT_SECRET:9y3upVx3We}
