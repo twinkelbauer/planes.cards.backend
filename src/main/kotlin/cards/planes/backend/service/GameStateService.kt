@@ -117,7 +117,11 @@ class GameStateService(
     }
 
     fun publishAll() {
-        parties.forEach { party -> getPartyState(party.key) }
+        parties.filter { party ->
+            party.value.players.all { it.cards.size == 3 }
+        }.forEach { party ->
+            getPartyState(party.key)
+        }
     }
 
     fun updateParty(partyId: String, playerId: String, update: PartyClientUpdate): Boolean {
@@ -164,7 +168,9 @@ class GameStateService(
                             player.score
                         },
                         playedCard = null,// Clear played cards immediately after battle
-                        cards = player.cards.filterNot { it == requireNotNull(player.playedCard) }
+                        cards = player.cards.filterNot { card ->
+                            card.copy(id = "irrelevant") == player.playedCard?.copy(id = "irrelevant")
+                        }
                     )
                 }
 
