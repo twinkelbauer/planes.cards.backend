@@ -25,6 +25,8 @@ class GeminiService(
     private val log = LoggerFactory.getLogger(javaClass)
 
     private val client: Client by lazy {
+        log.info("Creating client for gemini gemini from $geminiProperties")
+
         val credentials = GoogleCredentials
             .fromStream(ByteArrayInputStream(Base64.getDecoder().decode(geminiProperties.serviceAccountKey)))
             .createScoped("https://www.googleapis.com/auth/cloud-platform")
