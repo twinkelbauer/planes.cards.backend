@@ -36,6 +36,18 @@ class FlightQueryService {
             .map { it.toDto() }
     }
 
+    fun getFlightByNumber(airline: String, flightNumber: Int): FlightDto? = transaction {
+        val now = Clock.System.now()
+        FlightEntity.find {
+            (FlightTable.airline eq airline) and
+                (FlightTable.flightNumber eq flightNumber) and
+                (FlightTable.departureTime greater now)
+        }
+            .orderBy(FlightTable.departureTime to SortOrder.ASC)
+            .firstOrNull()
+            ?.toDto()
+    }
+
     fun hasFlights(): Boolean = transaction {
         !FlightEntity.all().empty()
     }

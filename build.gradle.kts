@@ -66,6 +66,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
 
+    implementation("com.google.genai:google-genai:1.41.0")
+
     implementation(project(":lufthansa-client"))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 }
