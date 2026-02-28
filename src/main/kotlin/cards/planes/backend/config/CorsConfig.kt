@@ -15,6 +15,7 @@ class CorsConfig {
                 registry.addMapping("/**")
                     .allowedOrigins(
                         "http://localhost:3000",
+                        "http://localhost:5173",
                         "https://planes.cards",
                         "https://www.planes.cards",
                     ) // your frontend URL
