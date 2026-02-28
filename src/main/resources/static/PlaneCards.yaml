@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: Planes.cards
+  description: Planes.cards
+  version: 1.0.0
+servers:
+  - url: 'https//api.planes.cards/'
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        200:
+          description: "Health check"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: string
+                    example: "ok"
+
+  /party/join:
+    get:
+      operationId: joinGame
+      responses:
+        200:
+          description: "Join party"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartyJoin"
+
+  /party/{partyId}:
+    get:
+      operationId: getPartyUpdates
+      summary: "Get Game Updates via websocket"
+      parameters:
+        - in: path
+          name: partyId
+          schema:
+            type: string
+          required: true
+          description: "provided party id"
+      responses:
+        200:
+          description: "Game Updates via websocket"
+
+  /party/{partyId}/update:
+    post:
+      operationId: sendPartyUpdates
+      summary: "Client updates party"
+      parameters:
+        - in: path
+          name: partyId
+          schema:
+            type: string
+          required: true
+          description: "provided party id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartyClientUpdate"
+      responses:
+        200:
+          description: "Accepted"
+
+components:
+  schemas:
+    PartyJoin:
+      type: object
+      required:
+        - yourId
+        - partyId
+      properties:
+        yourId:
+          type: string
+          example: "UUI"
+        partyId:
+          type: string
+          example: "UUI"
+
+    PartyGame:
+      type: object
+      required:
+        - partyId
+        - state
+        - players
+      properties:
+        partyId:
+          type: string
+          example: "UUID"
+        state:
+          type: string
+          $ref: "#/components/schemas/GameState"
+        players:
+          type: array
+          items:
+            $ref: "#/components/schemas/GamePlayer"
+
+    GamePlayer:
+      type: object
+      required:
+        - id
+        - cards
+      properties:
+        id:
+          type: string
+          example: "id"
+        playedCard:
+          type: object
+          $ref: "#/components/schemas/GameCard"
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/GameCard"
+
+    GameCard:
+      type: object
+      required:
+        - flightNumber
+        - startAirport
+        - destinationAirport
+        - boardingTime
+        - estimatedLanding
+        - seatNumber
+      properties:
+        aircraft:
+          type: string
+          example: "BOEING 747 MEGA LARGE"
+        seatNumber:
+          type: string
+          example: "12"
+        flightNumber:
+          type: string
+          example: "HAHALOSER"
+        startAirport:
+          type: string
+          example: "HAMBURG"
+        boardingTime:
+          type: string
+          format: date-time
+          example: "2026-01-01T12:00:00"
+        estimatedLanding:
+          type: string
+          format: date-time
+          example: "2026-01-02T12:00:00"
+        destinationAirport:
+          type: string
+          example: "WASHINGTION DC"
+
+
+    GameState:
+      enum:
+        - WAITING
+        #- SELECT_AIRPORT
+        - WAITING_FOR_CARDS
+        - ENDING
+
+    PartyClientUpdate:
+      type: object
+      required:
+        - yourId
+      properties:
+        yourId:
+          type: string
+          example: "UUID"
+        playCard:
+          type: object
+          $ref: "#/components/schemas/GameCard"
+
+
