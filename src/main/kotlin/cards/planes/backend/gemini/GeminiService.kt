@@ -10,7 +10,7 @@ import com.google.genai.types.GenerateContentConfig
 import com.google.genai.types.GoogleSearch
 import com.google.genai.types.Part
 import com.google.genai.types.Tool
-import java.io.FileInputStream
+import java.io.ByteArrayInputStream
 import kotlin.time.ExperimentalTime
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -25,7 +25,7 @@ class GeminiService(
 
     private val client: Client by lazy {
         val credentials = GoogleCredentials
-            .fromStream(FileInputStream(geminiProperties.serviceAccountKeyPath))
+            .fromStream(ByteArrayInputStream(geminiProperties.serviceAccountKey.toByteArray(Charsets.UTF_8)))
             .createScoped("https://www.googleapis.com/auth/cloud-platform")
         Client.builder()
             .vertexAI(true)
