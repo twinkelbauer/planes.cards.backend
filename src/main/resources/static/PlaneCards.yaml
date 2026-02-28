@@ -145,6 +145,8 @@ components:
         - estimatedLanding
         - seatNumber
         - id
+        - travelDistance
+        - flightTime
       properties:
         id:
           type: string
@@ -171,6 +173,13 @@ components:
         destinationAirport:
           type: string
           example: "WASHINGTION DC"
+        flightTime:
+          type: number
+          description: "IN Minutes"
+          example: "1200000"
+        travelDistance:
+          type: number
+          description: "Distance in meter"
 
 
     GameState:
