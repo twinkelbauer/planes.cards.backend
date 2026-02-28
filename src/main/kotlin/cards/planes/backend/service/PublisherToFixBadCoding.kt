@@ -8,7 +8,7 @@ class PublisherToFixBadCoding(
     private val gameStateService: GameStateService
 ) {
 
-    @Scheduled(fixedRate = 5_000)
+    @Scheduled(fixedRate = 2_500)
     fun pushPushPush() {
         gameStateService.publishAll()
     }
