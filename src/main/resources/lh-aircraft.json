@@ -1,0 +1,1922 @@
+[
+  {
+    "code": "100",
+    "name": "Fokker 100",
+    "airlineEquipCode": "F100"
+  },
+  {
+    "code": "141",
+    "name": "BAE Systems 146-100 Passenger",
+    "airlineEquipCode": "B461"
+  },
+  {
+    "code": "142",
+    "name": "BAE Systems 146-200 Passenger",
+    "airlineEquipCode": "B462"
+  },
+  {
+    "code": "143",
+    "name": "BAE Systems 146-300 Passenger",
+    "airlineEquipCode": "B463"
+  },
+  {
+    "code": "14X",
+    "name": "BAE Systems 146-100 Freighter",
+    "airlineEquipCode": "B461"
+  },
+  {
+    "code": "14Y",
+    "name": "BAE Systems 146-200 Freighter",
+    "airlineEquipCode": "B462"
+  },
+  {
+    "code": "14Z",
+    "name": "BAE Systems 146-300 Freighter",
+    "airlineEquipCode": "B463"
+  },
+  {
+    "code": "221",
+    "name": "Airbus A220-100",
+    "airlineEquipCode": "BCS1"
+  },
+  {
+    "code": "223",
+    "name": "Airbus A220-300",
+    "airlineEquipCode": "BCS3"
+  },
+  {
+    "code": "290",
+    "name": "E190-E2",
+    "airlineEquipCode": "E290"
+  },
+  {
+    "code": "295",
+    "name": "E195-E2",
+    "airlineEquipCode": "E295"
+  },
+  {
+    "code": "312",
+    "name": "Airbus A310-200 Passenger",
+    "airlineEquipCode": "A310"
+  },
+  {
+    "code": "313",
+    "name": "Airbus A310-300 Passenger",
+    "airlineEquipCode": "A310"
+  },
+  {
+    "code": "318",
+    "name": "Airbus A318",
+    "airlineEquipCode": "A318"
+  },
+  {
+    "code": "319",
+    "name": "Airbus A319",
+    "airlineEquipCode": "A319"
+  },
+  {
+    "code": "31A",
+    "name": "Airbus A318 (sharklets)",
+    "airlineEquipCode": "A318"
+  },
+  {
+    "code": "31B",
+    "name": "Airbus A319 (sharklets)",
+    "airlineEquipCode": "A319"
+  },
+  {
+    "code": "31N",
+    "name": "Airbus A319neo",
+    "airlineEquipCode": "A19N"
+  },
+  {
+    "code": "31X",
+    "name": "Airbus A310-200 Freighter",
+    "airlineEquipCode": "A310"
+  },
+  {
+    "code": "31Y",
+    "name": "Airbus A310-300 Freighter",
+    "airlineEquipCode": "A310"
+  },
+  {
+    "code": "320",
+    "name": "Airbus A320",
+    "airlineEquipCode": "A320"
+  },
+  {
+    "code": "321",
+    "name": "Airbus A321",
+    "airlineEquipCode": "A321"
+  },
+  {
+    "code": "32A",
+    "name": "Airbus A320 (sharklets)",
+    "airlineEquipCode": "A320"
+  },
+  {
+    "code": "32B",
+    "name": "Airbus A321 (sharklets)",
+    "airlineEquipCode": "A321"
+  },
+  {
+    "code": "32F",
+    "name": "Airbus A320 Freighter",
+    "airlineEquipCode": "A320"
+  },
+  {
+    "code": "32N",
+    "name": "Airbus A320neo",
+    "airlineEquipCode": "A20N"
+  },
+  {
+    "code": "32Q",
+    "name": "Airbus A321neo",
+    "airlineEquipCode": "A21N"
+  },
+  {
+    "code": "32X",
+    "name": "Airbus A321 Freighter",
+    "airlineEquipCode": "A321"
+  },
+  {
+    "code": "332",
+    "name": "Airbus A330-200",
+    "airlineEquipCode": "A332"
+  },
+  {
+    "code": "333",
+    "name": "Airbus A330-300",
+    "airlineEquipCode": "A333"
+  },
+  {
+    "code": "339",
+    "name": "Airbus A330-900",
+    "airlineEquipCode": "A339"
+  },
+  {
+    "code": "33X",
+    "name": "Airbus A330-200 Freighter",
+    "airlineEquipCode": "A332"
+  },
+  {
+    "code": "342",
+    "name": "Airbus A340-200",
+    "airlineEquipCode": "A342"
+  },
+  {
+    "code": "343",
+    "name": "Airbus A340-300",
+    "airlineEquipCode": "A343"
+  },
+  {
+    "code": "345",
+    "name": "Airbus A340-500",
+    "airlineEquipCode": "A345"
+  },
+  {
+    "code": "346",
+    "name": "Airbus A340-600",
+    "airlineEquipCode": "A346"
+  },
+  {
+    "code": "351",
+    "name": "Airbus A350-1000",
+    "airlineEquipCode": "A35K"
+  },
+  {
+    "code": "358",
+    "name": "Airbus A350-800",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "359",
+    "name": "Airbus A350-900",
+    "airlineEquipCode": "A359"
+  },
+  {
+    "code": "388",
+    "name": "Airbus A380-800 Passenger",
+    "airlineEquipCode": "A388"
+  },
+  {
+    "code": "38F",
+    "name": "Airbus A380-800F Freighter",
+    "airlineEquipCode": "A388"
+  },
+  {
+    "code": "703",
+    "name": "Boeing 707-320B / 320C Passenger",
+    "airlineEquipCode": "B703"
+  },
+  {
+    "code": "70F",
+    "name": "Boeing 707-320B / 320C Freighter",
+    "airlineEquipCode": "B703"
+  },
+  {
+    "code": "70M",
+    "name": "Boeing 707-320B / 320C Mixed Configuration",
+    "airlineEquipCode": "B703"
+  },
+  {
+    "code": "717",
+    "name": "Boeing 717-200",
+    "airlineEquipCode": "B712"
+  },
+  {
+    "code": "721",
+    "name": "Boeing 727-100 Passenger",
+    "airlineEquipCode": "B721"
+  },
+  {
+    "code": "722",
+    "name": "Boeing 727-200 Passenger",
+    "airlineEquipCode": "B722"
+  },
+  {
+    "code": "72B",
+    "name": "Boeing 727-100 Mixed Configuration",
+    "airlineEquipCode": "B721"
+  },
+  {
+    "code": "72C",
+    "name": "Boeing 727-200 Mixed Configuration",
+    "airlineEquipCode": "B722"
+  },
+  {
+    "code": "72W",
+    "name": "Boeing 727-200 (winglets) Passenger",
+    "airlineEquipCode": "B722"
+  },
+  {
+    "code": "72X",
+    "name": "Boeing 727-100 Freighter",
+    "airlineEquipCode": "B721"
+  },
+  {
+    "code": "72Y",
+    "name": "Boeing 727-200 Freighter",
+    "airlineEquipCode": "B722"
+  },
+  {
+    "code": "731",
+    "name": "Boeing 737-100 Passenger",
+    "airlineEquipCode": "B731"
+  },
+  {
+    "code": "732",
+    "name": "Boeing 737-200 Passenger",
+    "airlineEquipCode": "B732"
+  },
+  {
+    "code": "733",
+    "name": "Boeing 737-300 Passenger",
+    "airlineEquipCode": "B733"
+  },
+  {
+    "code": "734",
+    "name": "Boeing 737-400 Passenger",
+    "airlineEquipCode": "B734"
+  },
+  {
+    "code": "735",
+    "name": "Boeing 737-500 Passenger",
+    "airlineEquipCode": "B735"
+  },
+  {
+    "code": "736",
+    "name": "Boeing 737-600 Passenger",
+    "airlineEquipCode": "B736"
+  },
+  {
+    "code": "738",
+    "name": "Boeing 737-800 Passenger",
+    "airlineEquipCode": "B738"
+  },
+  {
+    "code": "739",
+    "name": "Boeing 737-900 Passenger",
+    "airlineEquipCode": "B739"
+  },
+  {
+    "code": "73C",
+    "name": "Boeing 737-300 (winglets) Passenger",
+    "airlineEquipCode": "B733"
+  },
+  {
+    "code": "73E",
+    "name": "Boeing 737-500 (winglets) Passenger",
+    "airlineEquipCode": "B735"
+  },
+  {
+    "code": "73G",
+    "name": "Boeing 737-700 Passenger",
+    "airlineEquipCode": "B737"
+  },
+  {
+    "code": "73H",
+    "name": "Boeing 737-800 (winglets) Passenger/BBJ2",
+    "airlineEquipCode": "B738"
+  },
+  {
+    "code": "73J",
+    "name": "Boeing 737-900 (winglets) Passenger/BBJ3",
+    "airlineEquipCode": "B739"
+  },
+  {
+    "code": "73L",
+    "name": "Boeing 737-200 Mixed Configuration",
+    "airlineEquipCode": "B732"
+  },
+  {
+    "code": "73N",
+    "name": "Boeing 737-300 Mixed Configuration",
+    "airlineEquipCode": "B733"
+  },
+  {
+    "code": "73P",
+    "name": "Boeing 737-400 Freighter",
+    "airlineEquipCode": "B734"
+  },
+  {
+    "code": "73Q",
+    "name": "Boeing 737-400 Mixed Configuration",
+    "airlineEquipCode": "B734"
+  },
+  {
+    "code": "73R",
+    "name": "Boeing 737-700 Mixed Configuration/BBJC",
+    "airlineEquipCode": "B737"
+  },
+  {
+    "code": "73S",
+    "name": "Boeing 737-700 Freighter",
+    "airlineEquipCode": "B737"
+  },
+  {
+    "code": "73W",
+    "name": "Boeing 737-700 (winglets) Passenger/BBJ1",
+    "airlineEquipCode": "B737"
+  },
+  {
+    "code": "73X",
+    "name": "Boeing 737-200 Freighter",
+    "airlineEquipCode": "B732"
+  },
+  {
+    "code": "73Y",
+    "name": "Boeing 737-300 Freighter",
+    "airlineEquipCode": "B733"
+  },
+  {
+    "code": "741",
+    "name": "Boeing 747-100 Passenger",
+    "airlineEquipCode": "B741"
+  },
+  {
+    "code": "742",
+    "name": "Boeing 747-200 Passenger",
+    "airlineEquipCode": "B742"
+  },
+  {
+    "code": "743",
+    "name": "Boeing 747-300 / 747-100/200 SUD Passenger",
+    "airlineEquipCode": "B743"
+  },
+  {
+    "code": "744",
+    "name": "Boeing 747-400 Passenger",
+    "airlineEquipCode": "B744"
+  },
+  {
+    "code": "748",
+    "name": "",
+    "airlineEquipCode": null
+  },
+  {
+    "code": "74B",
+    "name": "Boeing 747-400 Swingtail Freighter",
+    "airlineEquipCode": "B744"
+  },
+  {
+    "code": "74C",
+    "name": "Boeing 747-200 Mixed Configuration",
+    "airlineEquipCode": "B742"
+  },
+  {
+    "code": "74D",
+    "name": "Boeing 747-300 / 747-200 SUD Mixed Configuration",
+    "airlineEquipCode": "B743"
+  },
+  {
+    "code": "74E",
+    "name": "Boeing 747-400 Mixed Configuration",
+    "airlineEquipCode": "B744"
+  },
+  {
+    "code": "74H",
+    "name": "Boeing 747-8 Passenger",
+    "airlineEquipCode": "B748"
+  },
+  {
+    "code": "74J",
+    "name": "Boeing 747-400 (Domestic) Passenger",
+    "airlineEquipCode": "B74D"
+  },
+  {
+    "code": "74L",
+    "name": "Boeing 747SP Passenger",
+    "airlineEquipCode": "B74S"
+  },
+  {
+    "code": "74N",
+    "name": "Boeing 747-8F Freighter",
+    "airlineEquipCode": "B748"
+  },
+  {
+    "code": "74R",
+    "name": "Boeing 747SR Passenger",
+    "airlineEquipCode": "B74R"
+  },
+  {
+    "code": "74T",
+    "name": "Boeing 747-100 Freighter",
+    "airlineEquipCode": "B741"
+  },
+  {
+    "code": "74U",
+    "name": "Boeing 747-300 / 747-200 SUD Freighter",
+    "airlineEquipCode": "B743"
+  },
+  {
+    "code": "74V",
+    "name": "Boeing 747SR Freighter",
+    "airlineEquipCode": "B74R"
+  },
+  {
+    "code": "74X",
+    "name": "Boeing 747-200 Freighter",
+    "airlineEquipCode": "B742"
+  },
+  {
+    "code": "74Y",
+    "name": "Boeing 747-400 Freighter",
+    "airlineEquipCode": "B744"
+  },
+  {
+    "code": "752",
+    "name": "Boeing 757-200 Passenger",
+    "airlineEquipCode": "B752"
+  },
+  {
+    "code": "753",
+    "name": "Boeing 757-300 Passenger",
+    "airlineEquipCode": "B753"
+  },
+  {
+    "code": "75F",
+    "name": "Boeing 757-200 Freighter",
+    "airlineEquipCode": "B752"
+  },
+  {
+    "code": "75M",
+    "name": "Boeing 757-200 Mixed Configuration",
+    "airlineEquipCode": "B752"
+  },
+  {
+    "code": "75T",
+    "name": "Boeing 757-300 (winglets) Passenger",
+    "airlineEquipCode": "B753"
+  },
+  {
+    "code": "75W",
+    "name": "Boeing 757-200 (winglets) Passenger",
+    "airlineEquipCode": "B752"
+  },
+  {
+    "code": "762",
+    "name": "Boeing 767-200 Passenger",
+    "airlineEquipCode": "B762"
+  },
+  {
+    "code": "762",
+    "name": "Boeing 767-200 Passenger",
+    "airlineEquipCode": "B762"
+  },
+  {
+    "code": "763",
+    "name": "Boeing 767-300 Passenger",
+    "airlineEquipCode": "B763"
+  },
+  {
+    "code": "764",
+    "name": "Boeing 767-400 Passenger",
+    "airlineEquipCode": "B764"
+  },
+  {
+    "code": "76V",
+    "name": "Boeing 767-300 (winglets) Freighter",
+    "airlineEquipCode": "B763"
+  },
+  {
+    "code": "76W",
+    "name": "Boeing 767-300 (winglets) Passenger",
+    "airlineEquipCode": "B763"
+  },
+  {
+    "code": "76X",
+    "name": "Boeing 767-200 Freighter",
+    "airlineEquipCode": "B762"
+  },
+  {
+    "code": "76Y",
+    "name": "Boeing 767-300 Freighter",
+    "airlineEquipCode": "B763"
+  },
+  {
+    "code": "772",
+    "name": "Boeing 777-200/ 200ER",
+    "airlineEquipCode": "B77L"
+  },
+  {
+    "code": "773",
+    "name": "Boeing 777-300",
+    "airlineEquipCode": "B773"
+  },
+  {
+    "code": "779",
+    "name": "Boeing 777-900",
+    "airlineEquipCode": "B779"
+  },
+  {
+    "code": "77F",
+    "name": "Boeing 777 Freighter",
+    "airlineEquipCode": "B77F"
+  },
+  {
+    "code": "77L",
+    "name": "Boeing 777-200LR",
+    "airlineEquipCode": "B772"
+  },
+  {
+    "code": "77W",
+    "name": "Boeing 777-300ER",
+    "airlineEquipCode": "B77W"
+  },
+  {
+    "code": "77X",
+    "name": "Boeing 777-200F Freighter",
+    "airlineEquipCode": "B772"
+  },
+  {
+    "code": "783",
+    "name": "Boeing 787-3",
+    "airlineEquipCode": "B783"
+  },
+  {
+    "code": "788",
+    "name": "Boeing 787-8",
+    "airlineEquipCode": "B788"
+  },
+  {
+    "code": "789",
+    "name": "Boeing 787-9",
+    "airlineEquipCode": "B789"
+  },
+  {
+    "code": "7M8",
+    "name": "Boeing 737 Max 8",
+    "airlineEquipCode": "B38M"
+  },
+  {
+    "code": "A22",
+    "name": "Antonov An-22",
+    "airlineEquipCode": "AN22"
+  },
+  {
+    "code": "A26",
+    "name": "Antonov An-26",
+    "airlineEquipCode": "AN26"
+  },
+  {
+    "code": "A28",
+    "name": "Antonov An-28 / PZL Mielec M-28 Skytruck",
+    "airlineEquipCode": "AN28"
+  },
+  {
+    "code": "A30",
+    "name": "Antonov An-30",
+    "airlineEquipCode": "AN30"
+  },
+  {
+    "code": "A32",
+    "name": "Antonov An-32",
+    "airlineEquipCode": "AN32"
+  },
+  {
+    "code": "A38",
+    "name": "Antonov An-38",
+    "airlineEquipCode": "AN38"
+  },
+  {
+    "code": "A40",
+    "name": "Antonov An-140",
+    "airlineEquipCode": "A140"
+  },
+  {
+    "code": "A4F",
+    "name": "Antonov An-124 Ruslan",
+    "airlineEquipCode": "A124"
+  },
+  {
+    "code": "A58",
+    "name": "Antonov An-158",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "A5F",
+    "name": "Antonov An-225",
+    "airlineEquipCode": "A225"
+  },
+  {
+    "code": "A81",
+    "name": "Antonov AN148-100",
+    "airlineEquipCode": "A148"
+  },
+  {
+    "code": "AB4",
+    "name": "Airbus A300B2 / A300B4 Passenger",
+    "airlineEquipCode": "A30B"
+  },
+  {
+    "code": "AB6",
+    "name": "Airbus A300-600 Passenger",
+    "airlineEquipCode": "A306"
+  },
+  {
+    "code": "ABB",
+    "name": "Airbus A300-600ST Beluga Freighter",
+    "airlineEquipCode": "A3ST"
+  },
+  {
+    "code": "ABX",
+    "name": "Airbus A300B4 / A300C4 / A300F4 Freighter",
+    "airlineEquipCode": "A30B"
+  },
+  {
+    "code": "ABY",
+    "name": "Airbus A300-600 Freighter",
+    "airlineEquipCode": "A306"
+  },
+  {
+    "code": "ACP",
+    "name": "Twin Commander Aircraft",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "ACT",
+    "name": "Twin (Aero) Turbo Commander / Jetprop Commander",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "AGH",
+    "name": "AgustaWestland A109",
+    "airlineEquipCode": "A109"
+  },
+  {
+    "code": "AN4",
+    "name": "Antonov An-24",
+    "airlineEquipCode": "AN24"
+  },
+  {
+    "code": "AN7",
+    "name": "Antonov An-72 / An-74",
+    "airlineEquipCode": "AN72"
+  },
+  {
+    "code": "ANF",
+    "name": "Antonov An-12",
+    "airlineEquipCode": "AN12"
+  },
+  {
+    "code": "APF",
+    "name": "BAE Systems  ATP Freighter",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "APH",
+    "name": "Eurocopter (Aerospatiale) SA330 Puma / AS332 Super Puma",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "AR1",
+    "name": "Avro RJ100",
+    "airlineEquipCode": "RJ1H"
+  },
+  {
+    "code": "AR7",
+    "name": "Avro RJ70",
+    "airlineEquipCode": "RJ70"
+  },
+  {
+    "code": "AR8",
+    "name": "Avro RJ85",
+    "airlineEquipCode": "RJ85"
+  },
+  {
+    "code": "AT4",
+    "name": "ATR 42-300 / 320",
+    "airlineEquipCode": "AT43"
+  },
+  {
+    "code": "AT7",
+    "name": "ATR 72",
+    "airlineEquipCode": "AT72"
+  },
+  {
+    "code": "ATF",
+    "name": "ATR 72 Freighter",
+    "airlineEquipCode": "AT72"
+  },
+  {
+    "code": "ATP",
+    "name": "BAE Systems  ATP",
+    "airlineEquipCode": "ATP"
+  },
+  {
+    "code": "ATZ",
+    "name": "ATR 42 Freighter",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "AWH",
+    "name": "AgustaWestland AW139",
+    "airlineEquipCode": "A139"
+  },
+  {
+    "code": "AWZ",
+    "name": "Augusta Westland 200",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "B12",
+    "name": "BAE Systems (BAC) One-Eleven 200",
+    "airlineEquipCode": "BA11"
+  },
+  {
+    "code": "B13",
+    "name": "BAE Systems (BAC) One-Eleven 300",
+    "airlineEquipCode": "BA11"
+  },
+  {
+    "code": "B14",
+    "name": "BAE Systems (BAC) One-Eleven 400 / 475",
+    "airlineEquipCode": "BA11"
+  },
+  {
+    "code": "B15",
+    "name": "BAE Systems (BAC) One-Eleven 500 / RomBac One-Eleven 560",
+    "airlineEquipCode": "BA11"
+  },
+  {
+    "code": "B72",
+    "name": "Boeing 720-020B",
+    "airlineEquipCode": "B720"
+  },
+  {
+    "code": "BE2",
+    "name": "Hawker Beechcraft (Light aircraft-twin piston engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "BE4",
+    "name": "Hawker 400 Beechjet/400A/400XP/400T",
+    "airlineEquipCode": "BE40"
+  },
+  {
+    "code": "BE9",
+    "name": "Hawker Beechcraft C99 Airliner",
+    "airlineEquipCode": "BE99"
+  },
+  {
+    "code": "BEF",
+    "name": "Hawker Beechcraft 1900 Freighter",
+    "airlineEquipCode": "B190"
+  },
+  {
+    "code": "BEH",
+    "name": "Hawker Beechcraft 1900D Airliner",
+    "airlineEquipCode": "B190"
+  },
+  {
+    "code": "BEP",
+    "name": "Hawker Beechcraft (Light aircraft-single piston engine)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "BES",
+    "name": "Hawker Beechcraft 1900C Airliner",
+    "airlineEquipCode": "B190"
+  },
+  {
+    "code": "BET",
+    "name": "Hawker Beechcraft (Light aircraft-twin turboprop engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "BH2",
+    "name": "Bell (Helicopters)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "BNI",
+    "name": "Britten-Norman BN-2A / BN-2B Islander",
+    "airlineEquipCode": "BN2P"
+  },
+  {
+    "code": "BNT",
+    "name": "Britten-Norman BN-2A Mk.III Trislander",
+    "airlineEquipCode": "TRIS"
+  },
+  {
+    "code": "BTA",
+    "name": "Business Turbo-Prop Aircraft",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "BUS",
+    "name": "Bus",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "C27",
+    "name": "Comac ARJ21-700",
+    "airlineEquipCode": "AJ27"
+  },
+  {
+    "code": "CCJ",
+    "name": "Canadair (Bombardier) CL-600 / 601 / 604 / 605 Challenger",
+    "airlineEquipCode": "CL60"
+  },
+  {
+    "code": "CCW",
+    "name": "Bombardier BD-700 Global 5000",
+    "airlineEquipCode": "GL5T"
+  },
+  {
+    "code": "CCX",
+    "name": "Bombardier BD-700 Global Express",
+    "airlineEquipCode": "GLEX"
+  },
+  {
+    "code": "CD2",
+    "name": "Gippsland Aeronautics N22B / N24A Nomad",
+    "airlineEquipCode": "NOMA"
+  },
+  {
+    "code": "CJ1",
+    "name": "Cessna 500/ 501/ 525 Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJ2",
+    "name": "Cessna 550/ 551/ 552 Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJ5",
+    "name": "Cessna 560 Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJ6",
+    "name": "Cessna 650 Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJ8",
+    "name": "Cessna 680 Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJL",
+    "name": "Cessna 560 XL/XLS Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CJM",
+    "name": "Cessna 510 Mustang Citation",
+    "airlineEquipCode": "C510"
+  },
+  {
+    "code": "CJX",
+    "name": "Cessna 750 Citation X",
+    "airlineEquipCode": "C750"
+  },
+  {
+    "code": "CL3",
+    "name": "Bombardier Challenger 300",
+    "airlineEquipCode": "CL30"
+  },
+  {
+    "code": "CN1",
+    "name": "Cessna (Light aircraft-single piston engine)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CN2",
+    "name": "Cessna (Light aircraft-twin piston engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CNC",
+    "name": "Cessna (Light aircraft-single turboprop engine)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CNF",
+    "name": "Cessna 208B Freighter",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CNJ",
+    "name": "Cessna Citation",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CNT",
+    "name": "Cessna (Light aircraft-twin turboprop engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "CR1",
+    "name": "Canadair (Bombardier) Regional Jet 100",
+    "airlineEquipCode": "CRJ1"
+  },
+  {
+    "code": "CR2",
+    "name": "Canadair (Bombardier) Regional Jet 200",
+    "airlineEquipCode": "CRJ2"
+  },
+  {
+    "code": "CR7",
+    "name": "Canadair (Bombardier) Regional Jet 700 and Challenger 870",
+    "airlineEquipCode": "CRJ7"
+  },
+  {
+    "code": "CR9",
+    "name": "Canadair (Bombardier) Regional Jet 900 and Challenger 890",
+    "airlineEquipCode": "CRJ9"
+  },
+  {
+    "code": "CRA",
+    "name": "Canadair (Bombardier) Regional Jet 705",
+    "airlineEquipCode": "CRJ9"
+  },
+  {
+    "code": "CRF",
+    "name": "Canadair (Bombardier) Regional Jet Freighter",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "CRK",
+    "name": "Canadair (Bombardier) Regional Jet 1000",
+    "airlineEquipCode": "CRJX"
+  },
+  {
+    "code": "CS2",
+    "name": "CASA / lAe 212 Aviocar",
+    "airlineEquipCode": "C212"
+  },
+  {
+    "code": "CS5",
+    "name": "CASA / lAe CN-235",
+    "airlineEquipCode": "CN35"
+  },
+  {
+    "code": "CS9",
+    "name": "CASA / lAe C-295",
+    "airlineEquipCode": "C295"
+  },
+  {
+    "code": "CV2",
+    "name": "Convair 240 Passenger",
+    "airlineEquipCode": "CVLP"
+  },
+  {
+    "code": "CV4",
+    "name": "Convair 440 Metropolitan Passenger",
+    "airlineEquipCode": "CVLP"
+  },
+  {
+    "code": "CV5",
+    "name": "Convair 580 Passenger",
+    "airlineEquipCode": "CVLT"
+  },
+  {
+    "code": "CVV",
+    "name": "Convair 240 Freighter",
+    "airlineEquipCode": "CVLP"
+  },
+  {
+    "code": "CVX",
+    "name": "Convair 340 / 440 Freighter",
+    "airlineEquipCode": "CVLP"
+  },
+  {
+    "code": "CVY",
+    "name": "Convair 580 / 5800 / 600 / 640 Freighter",
+    "airlineEquipCode": "CVLT"
+  },
+  {
+    "code": "CWC",
+    "name": "Curtiss C-46 Commando",
+    "airlineEquipCode": "C46"
+  },
+  {
+    "code": "D11",
+    "name": "Boeing (Douglas) DC-10-10 / 15 Passenger",
+    "airlineEquipCode": "DC10"
+  },
+  {
+    "code": "D1C",
+    "name": "Boeing (Douglas) DC-10-30 / 40 Passenger",
+    "airlineEquipCode": "DC10"
+  },
+  {
+    "code": "D1M",
+    "name": "Boeing (Douglas) DC-10-30 Mixed Configuration",
+    "airlineEquipCode": "DC10"
+  },
+  {
+    "code": "D1X",
+    "name": "Boeing (Douglas) DC-10-10 Freighter",
+    "airlineEquipCode": "DC10"
+  },
+  {
+    "code": "D1Y",
+    "name": "Boeing (Douglas) DC-10-30 / 40 Freighter",
+    "airlineEquipCode": "DC10"
+  },
+  {
+    "code": "D20",
+    "name": "Dassault Falcon 2000/2000DX",
+    "airlineEquipCode": "F2TH"
+  },
+  {
+    "code": "D28",
+    "name": "Fairchild Dornier 228",
+    "airlineEquipCode": "D228"
+  },
+  {
+    "code": "D2L",
+    "name": "Dassault Falcon 2000EX/EASY/LX",
+    "airlineEquipCode": "F2TH"
+  },
+  {
+    "code": "D38",
+    "name": "Fairchild Dornier 328-100",
+    "airlineEquipCode": "D328"
+  },
+  {
+    "code": "D3F",
+    "name": "Boeing (Douglas) DC-3 Freighter",
+    "airlineEquipCode": "DC3"
+  },
+  {
+    "code": "D42",
+    "name": "Diamond Aircraft DA42 Twin Star",
+    "airlineEquipCode": "DA42"
+  },
+  {
+    "code": "D4X",
+    "name": "De Havilland (Bombardier) DHC-8-400 Dash 8Q Freighter",
+    "airlineEquipCode": "DH8D"
+  },
+  {
+    "code": "D6F",
+    "name": "Boeing (Douglas) DC-6A / DC-6B / DC-6C Freighter",
+    "airlineEquipCode": "DC6"
+  },
+  {
+    "code": "D8L",
+    "name": "Boeing (Douglas) DC-8-62 Passenger",
+    "airlineEquipCode": "DC86"
+  },
+  {
+    "code": "D8M",
+    "name": "Boeing (Douglas) DC-8-62 Mixed Configuration",
+    "airlineEquipCode": "DC86"
+  },
+  {
+    "code": "D8Q",
+    "name": "Boeing (Douglas) DC-8-72 Passenger",
+    "airlineEquipCode": "DC87"
+  },
+  {
+    "code": "D8T",
+    "name": "Boeing (Douglas) DC-8-50 Freighter",
+    "airlineEquipCode": "DC85"
+  },
+  {
+    "code": "D8X",
+    "name": "Boeing (Douglas) DC-8-61 / 62 / 63 Freighter",
+    "airlineEquipCode": "DC86"
+  },
+  {
+    "code": "D8Y",
+    "name": "Boeing (Douglas) DC-8-71 / 72 / 73 Freighter",
+    "airlineEquipCode": "DC87"
+  },
+  {
+    "code": "D91",
+    "name": "Boeing (Douglas) DC-9-10 Passenger",
+    "airlineEquipCode": "DC91"
+  },
+  {
+    "code": "D92",
+    "name": "Boeing (Douglas) DC-9-20 Passenger",
+    "airlineEquipCode": "DC92"
+  },
+  {
+    "code": "D93",
+    "name": "Boeing (Douglas) DC-9-30 Passenger",
+    "airlineEquipCode": "DC93"
+  },
+  {
+    "code": "D94",
+    "name": "Boeing (Douglas) DC-9-40 Passenger",
+    "airlineEquipCode": "DC94"
+  },
+  {
+    "code": "D95",
+    "name": "Boeing (Douglas) DC-9-50 Passenger",
+    "airlineEquipCode": "DC95"
+  },
+  {
+    "code": "D9C",
+    "name": "Boeing (Douglas) DC-9-30 Freighter",
+    "airlineEquipCode": "DC93"
+  },
+  {
+    "code": "D9D",
+    "name": "Boeing (Douglas) DC-9-40 Freighter",
+    "airlineEquipCode": "DC94"
+  },
+  {
+    "code": "D9L",
+    "name": "Dassault Falcon 900LX",
+    "airlineEquipCode": "F900"
+  },
+  {
+    "code": "D9X",
+    "name": "Boeing (Douglas) DC-9-10 Freighter",
+    "airlineEquipCode": "DC91"
+  },
+  {
+    "code": "DC3",
+    "name": "Boeing (Douglas) DC-3 Passenger",
+    "airlineEquipCode": "DC3"
+  },
+  {
+    "code": "DC4",
+    "name": "Boeing (Douglas) DC-4",
+    "airlineEquipCode": "DC4"
+  },
+  {
+    "code": "DC6",
+    "name": "Boeing (Douglas) DC-6B Passenger",
+    "airlineEquipCode": "DC6"
+  },
+  {
+    "code": "DF1",
+    "name": "Dassault Falcon 10 / 100",
+    "airlineEquipCode": "FA10"
+  },
+  {
+    "code": "DF2",
+    "name": "Dassault Falcon 20 / 200",
+    "airlineEquipCode": "FA20"
+  },
+  {
+    "code": "DF5",
+    "name": "Dassault Falcon 50 / 50EX",
+    "airlineEquipCode": "FA50"
+  },
+  {
+    "code": "DF7",
+    "name": "Dassault Falcon 7X",
+    "airlineEquipCode": "FA7X"
+  },
+  {
+    "code": "DF9",
+    "name": "Dassault Falcon 900/900B/900C/900DX/900EX/EASY",
+    "airlineEquipCode": "F900"
+  },
+  {
+    "code": "DH1",
+    "name": "De Havilland (Bombardier) DHC-8-100 Dash 8 / 8Q",
+    "airlineEquipCode": "DH8A"
+  },
+  {
+    "code": "DH2",
+    "name": "De Havilland (Bombardier) DHC-8-200 Dash 8 / 8Q",
+    "airlineEquipCode": "DH8B"
+  },
+  {
+    "code": "DH3",
+    "name": "De Havilland (Bombardier) DHC-8-300 Dash 8 / 8Q",
+    "airlineEquipCode": "DH8C"
+  },
+  {
+    "code": "DH4",
+    "name": "De Havilland (Bombardier) DHC-8-400 Dash 8Q",
+    "airlineEquipCode": "DH8D"
+  },
+  {
+    "code": "DH7",
+    "name": "De Havilland (Bombardier) DHC-7 Dash 7",
+    "airlineEquipCode": "DHC7"
+  },
+  {
+    "code": "DHC",
+    "name": "De Havilland (Bombardier) DHC-4 Caribou",
+    "airlineEquipCode": "DHC4"
+  },
+  {
+    "code": "DHD",
+    "name": "BAE Systems (De Havilland) 104 Dove",
+    "airlineEquipCode": "DOVE"
+  },
+  {
+    "code": "DHF",
+    "name": "De Havilland (Bombardier) DHC-8 Freighter",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "DHH",
+    "name": "BAE Systems (De Havilland) 114 Heron",
+    "airlineEquipCode": "HERN"
+  },
+  {
+    "code": "DHL",
+    "name": "De Havilland (Bombardier) DHC-3 Turbo Otter",
+    "airlineEquipCode": "DH3T"
+  },
+  {
+    "code": "DHP",
+    "name": "De Havilland (Bombardier) DHC-2 Beaver",
+    "airlineEquipCode": "DHC2"
+  },
+  {
+    "code": "DHR",
+    "name": "De Havilland (Bombardier) DHC-2 Turbo Beaver",
+    "airlineEquipCode": "DH2T"
+  },
+  {
+    "code": "DHS",
+    "name": "De Havilland (Bombardier) DHC-3 Otter",
+    "airlineEquipCode": "DHC3"
+  },
+  {
+    "code": "DHT",
+    "name": "De Havilland (Bombardier) DHC-6 Twin Otter",
+    "airlineEquipCode": "DHC6"
+  },
+  {
+    "code": "E70",
+    "name": "Embraer 170",
+    "airlineEquipCode": "E170"
+  },
+  {
+    "code": "E75",
+    "name": "Embraer 175",
+    "airlineEquipCode": "E75L"
+  },
+  {
+    "code": "E90",
+    "name": "Embraer 190",
+    "airlineEquipCode": "E190"
+  },
+  {
+    "code": "E95",
+    "name": "Embraer 195 and Legacy 1000",
+    "airlineEquipCode": "E190"
+  },
+  {
+    "code": "EA5",
+    "name": "Eclipse 500",
+    "airlineEquipCode": "EA50"
+  },
+  {
+    "code": "EC3",
+    "name": "Eurocopter EC130",
+    "airlineEquipCode": "EC30"
+  },
+  {
+    "code": "EC5",
+    "name": "Eurocopter EC155",
+    "airlineEquipCode": "EC55"
+  },
+  {
+    "code": "EM2",
+    "name": "Embraer 120 Brasilia",
+    "airlineEquipCode": "E120"
+  },
+  {
+    "code": "EMB",
+    "name": "Embraer 110 Bandeirante",
+    "airlineEquipCode": "E110"
+  },
+  {
+    "code": "EP1",
+    "name": "Embraer EMB-500 Phenom 100",
+    "airlineEquipCode": "E50P"
+  },
+  {
+    "code": "EP3",
+    "name": "Embraer EMB-505 Phenom 300",
+    "airlineEquipCode": "E55P"
+  },
+  {
+    "code": "ER3",
+    "name": "Embraer RJ135 and Legacy 600/650",
+    "airlineEquipCode": "E135"
+  },
+  {
+    "code": "ER4",
+    "name": "Embraer RJ145",
+    "airlineEquipCode": "E145"
+  },
+  {
+    "code": "ERD",
+    "name": "Embraer RJ140",
+    "airlineEquipCode": "E135"
+  },
+  {
+    "code": "F21",
+    "name": "Fokker F28 Fellowship 1000",
+    "airlineEquipCode": "F28"
+  },
+  {
+    "code": "F22",
+    "name": "Fokker F28 Fellowship 2000",
+    "airlineEquipCode": "F28"
+  },
+  {
+    "code": "F23",
+    "name": "Fokker F28 Fellowship 3000",
+    "airlineEquipCode": "F28"
+  },
+  {
+    "code": "F24",
+    "name": "Fokker F28 Fellowship 4000",
+    "airlineEquipCode": "F28"
+  },
+  {
+    "code": "F27",
+    "name": "Fokker F27 Friendship / Fairchild Industries F-27",
+    "airlineEquipCode": "F27"
+  },
+  {
+    "code": "F50",
+    "name": "Fokker 50",
+    "airlineEquipCode": "F50"
+  },
+  {
+    "code": "F5F",
+    "name": "Fokker 50 Freighter",
+    "airlineEquipCode": "F50"
+  },
+  {
+    "code": "F70",
+    "name": "Fokker 70",
+    "airlineEquipCode": "F70"
+  },
+  {
+    "code": "FK7",
+    "name": "Fairchild Industries FH-227",
+    "airlineEquipCode": "F27"
+  },
+  {
+    "code": "FRJ",
+    "name": "Fairchild Dornier 328JET",
+    "airlineEquipCode": "J328"
+  },
+  {
+    "code": "G2B",
+    "name": "Gulfstream Aerospace G-1159 Gulfstream IIB",
+    "airlineEquipCode": "GLF2"
+  },
+  {
+    "code": "G2S",
+    "name": "Gulfstream Aerospace G-1159 Gulfstream IISP",
+    "airlineEquipCode": "GLF2"
+  },
+  {
+    "code": "GA8",
+    "name": "Gippsland Aeronautics GA8 Airvan",
+    "airlineEquipCode": "GA8"
+  },
+  {
+    "code": "GJ2",
+    "name": "Gulfstream Aerospace G-1159 Gulfstream II",
+    "airlineEquipCode": "GLF2"
+  },
+  {
+    "code": "GJ3",
+    "name": "Gulfstream Aerospace G-1159A Gulfstream III",
+    "airlineEquipCode": "GLF3"
+  },
+  {
+    "code": "GJ4",
+    "name": "Gulfstream Aerospace IV (G300/G350/G400/G450/IVSP)",
+    "airlineEquipCode": "GLF4"
+  },
+  {
+    "code": "GJ5",
+    "name": "Gulfstream Aerospace V (G500/G550)",
+    "airlineEquipCode": "GLF5"
+  },
+  {
+    "code": "GJ6",
+    "name": "Gulfstream Aerospace G650",
+    "airlineEquipCode": "GLF6"
+  },
+  {
+    "code": "GR1",
+    "name": "Gulfstream Aerospace G-100/G-150 (Astra SPX)",
+    "airlineEquipCode": "G150"
+  },
+  {
+    "code": "GR2",
+    "name": "Gulfstream Aerospace G-200 (Galaxy)",
+    "airlineEquipCode": "GALX"
+  },
+  {
+    "code": "GR3",
+    "name": "Gulfstream Aerospace G-280",
+    "airlineEquipCode": "G280"
+  },
+  {
+    "code": "GRG",
+    "name": "Grumman G-21 Goose (Amphibian)",
+    "airlineEquipCode": "G21"
+  },
+  {
+    "code": "GRM",
+    "name": "Grumman G-73 Turbo Mallard (Amphibian)",
+    "airlineEquipCode": "G73T"
+  },
+  {
+    "code": "H20",
+    "name": "Hawker 200",
+    "airlineEquipCode": "PRM1"
+  },
+  {
+    "code": "H21",
+    "name": "Hawker 1000",
+    "airlineEquipCode": "H25C"
+  },
+  {
+    "code": "H24",
+    "name": "Hawker 4000",
+    "airlineEquipCode": "HA4T"
+  },
+  {
+    "code": "H25",
+    "name": "Hawker 750/800/800XP/800SP",
+    "airlineEquipCode": "H25B"
+  },
+  {
+    "code": "H28",
+    "name": "Hawker 850XP/900",
+    "airlineEquipCode": "H25B"
+  },
+  {
+    "code": "H29",
+    "name": "Hawker 900XP",
+    "airlineEquipCode": "H25B"
+  },
+  {
+    "code": "HEC",
+    "name": "Helio H-250 Courier / H-295 / 395 Super Courier",
+    "airlineEquipCode": "COUR"
+  },
+  {
+    "code": "HOV",
+    "name": "Surface Equipment-Hovercraft",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "HS7",
+    "name": "BAE Systems (Hawker Siddeley) 748 / Andover",
+    "airlineEquipCode": "A748"
+  },
+  {
+    "code": "I14",
+    "name": "Ilyushin Il-114",
+    "airlineEquipCode": "I114"
+  },
+  {
+    "code": "I9F",
+    "name": "Ilyushin Il-96 Freighter",
+    "airlineEquipCode": "IL96"
+  },
+  {
+    "code": "IL6",
+    "name": "Ilyushin Il-62",
+    "airlineEquipCode": "IL62"
+  },
+  {
+    "code": "IL7",
+    "name": "Ilyushin Il-76",
+    "airlineEquipCode": "IL76"
+  },
+  {
+    "code": "IL8",
+    "name": "Ilyushin Il-18",
+    "airlineEquipCode": "IL18"
+  },
+  {
+    "code": "IL9",
+    "name": "Ilyushin Il-96 Passenger",
+    "airlineEquipCode": "IL96"
+  },
+  {
+    "code": "ILW",
+    "name": "Ilyushin Il-86",
+    "airlineEquipCode": "IL86"
+  },
+  {
+    "code": "J31",
+    "name": "BAE Systems Jetstream 31",
+    "airlineEquipCode": "JS31"
+  },
+  {
+    "code": "J32",
+    "name": "BAE Systems Jetstream 32",
+    "airlineEquipCode": "JS32"
+  },
+  {
+    "code": "J41",
+    "name": "BAE Systems Jetstream 41",
+    "airlineEquipCode": "JS41"
+  },
+  {
+    "code": "JU5",
+    "name": "Junkers Ju 52/3m",
+    "airlineEquipCode": "JU52"
+  },
+  {
+    "code": "L11",
+    "name": "Lockheed Martin L-1011 TriStar 1 / 50 / 100 / 150 / 200 / 250 Passenger",
+    "airlineEquipCode": "L101"
+  },
+  {
+    "code": "L15",
+    "name": "Lockheed Martin L-1011 TriStar 500 Passenger",
+    "airlineEquipCode": "L101"
+  },
+  {
+    "code": "L1F",
+    "name": "Lockheed Martin L-1011 TriStar Freighter",
+    "airlineEquipCode": "L101"
+  },
+  {
+    "code": "L4F",
+    "name": "Aircraft Industries (LET) 410 Freighter",
+    "airlineEquipCode": "L410"
+  },
+  {
+    "code": "L4T",
+    "name": "Aircraft Industries (LET) 410",
+    "airlineEquipCode": "L410"
+  },
+  {
+    "code": "LCH",
+    "name": "Surface Equipment-Launch / Boat",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "LJA",
+    "name": "Light Jet Aircraft",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "LMO",
+    "name": "Surface Equipment-Limousine",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "LOE",
+    "name": "Lockheed Martin L-188 Electra",
+    "airlineEquipCode": "L188"
+  },
+  {
+    "code": "LOF",
+    "name": "Lockheed Martin L-188 Electra Freighter",
+    "airlineEquipCode": "L188"
+  },
+  {
+    "code": "LOH",
+    "name": "Lockheed Martin L-182 / L-282 / L-382 (L-100) Hercules",
+    "airlineEquipCode": "C130"
+  },
+  {
+    "code": "LRJ",
+    "name": "Learjet",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "M11",
+    "name": "Boeing (Douglas) MD-11 Passenger",
+    "airlineEquipCode": "MD11"
+  },
+  {
+    "code": "M1F",
+    "name": "Boeing (Douglas) MD-11 Freighter",
+    "airlineEquipCode": "MD11"
+  },
+  {
+    "code": "M1M",
+    "name": "Boeing (Douglas) MD-11 Mixed Configuration",
+    "airlineEquipCode": "MD11"
+  },
+  {
+    "code": "M2F",
+    "name": "Boeing (Douglas) MD82 Freighter",
+    "airlineEquipCode": "MD82"
+  },
+  {
+    "code": "M3F",
+    "name": "Boeing (Douglas) MD83 Freighter",
+    "airlineEquipCode": "MD83"
+  },
+  {
+    "code": "M81",
+    "name": "Boeing (Douglas) MD-81",
+    "airlineEquipCode": "MD81"
+  },
+  {
+    "code": "M82",
+    "name": "Boeing (Douglas) MD-82",
+    "airlineEquipCode": "MD82"
+  },
+  {
+    "code": "M83",
+    "name": "Boeing (Douglas) MD-83",
+    "airlineEquipCode": "MD83"
+  },
+  {
+    "code": "M87",
+    "name": "Boeing (Douglas) MD-87",
+    "airlineEquipCode": "MD87"
+  },
+  {
+    "code": "M88",
+    "name": "Boeing (Douglas) MD-88",
+    "airlineEquipCode": "MD88"
+  },
+  {
+    "code": "M8F",
+    "name": "Boeing (Douglas) MD88 Freighter",
+    "airlineEquipCode": "MD88"
+  },
+  {
+    "code": "M90",
+    "name": "Boeing (Douglas) MD-90",
+    "airlineEquipCode": "MD90"
+  },
+  {
+    "code": "MA6",
+    "name": "Xian Yunshuji MA-60/MA600",
+    "airlineEquipCode": "AN24"
+  },
+  {
+    "code": "MBH",
+    "name": "Eurocopter (MBB) BO105",
+    "airlineEquipCode": "B105"
+  },
+  {
+    "code": "MD9",
+    "name": "MD Helicopters Inc MD 900 Explorer",
+    "airlineEquipCode": "EXPL"
+  },
+  {
+    "code": "MIH",
+    "name": "Mil Mi-8 / Mi-17 / Mi-171 / Mi-172",
+    "airlineEquipCode": "MI8"
+  },
+  {
+    "code": "MU2",
+    "name": "Mitsubishi Aircraft Corporation MU-2",
+    "airlineEquipCode": "MU2"
+  },
+  {
+    "code": "NDC",
+    "name": "Aerospatiale SN601 Corvette",
+    "airlineEquipCode": "S601"
+  },
+  {
+    "code": "NDE",
+    "name": "Eurocopter (Aerospatiale) AS350 Ecureuil / AS355 Ecureuil 2",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "NDH",
+    "name": "Eurocopter (Aerospatiale) SA365C / SA365N  Dauphin 2",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "P18",
+    "name": "Piaggio Aero P180 Avanti II",
+    "airlineEquipCode": "P180"
+  },
+  {
+    "code": "PA1",
+    "name": "Piper (Light aircraft-single piston engine)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "PA2",
+    "name": "Piper (Light aircraft-twin piston engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "PAT",
+    "name": "Piper (Light aircraft-twin turboprop engines)",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "PL2",
+    "name": "Pilatus PC-12",
+    "airlineEquipCode": "PC12"
+  },
+  {
+    "code": "PL6",
+    "name": "Pilatus PC-6 Turbo Porter",
+    "airlineEquipCode": "PC6T"
+  },
+  {
+    "code": "PN6",
+    "name": "Vulcanair (Partenavia) P.68",
+    "airlineEquipCode": "P68"
+  },
+  {
+    "code": "PR1",
+    "name": "Hawker 390 Premier 1/1A",
+    "airlineEquipCode": "PRM1"
+  },
+  {
+    "code": "RFS",
+    "name": "Surface Equipment-Road Feeder Service (Truck)",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "S20",
+    "name": "Saab 2000",
+    "airlineEquipCode": "SB20"
+  },
+  {
+    "code": "S58",
+    "name": "Sikorsky S-58T",
+    "airlineEquipCode": "S58T"
+  },
+  {
+    "code": "S61",
+    "name": "Sikorsky S-61",
+    "airlineEquipCode": "S61"
+  },
+  {
+    "code": "S76",
+    "name": "Sikorsky S-76",
+    "airlineEquipCode": "S76"
+  },
+  {
+    "code": "SF3",
+    "name": "Saab 340",
+    "airlineEquipCode": "SF34"
+  },
+  {
+    "code": "SFB",
+    "name": "Saab 340B",
+    "airlineEquipCode": "SF34"
+  },
+  {
+    "code": "SFF",
+    "name": "Saab 340 Freighter",
+    "airlineEquipCode": "SF34"
+  },
+  {
+    "code": "SH3",
+    "name": "Shorts 330 (SD3-30)",
+    "airlineEquipCode": "SH33"
+  },
+  {
+    "code": "SH6",
+    "name": "Shorts 360 (SD3-60)",
+    "airlineEquipCode": "SH36"
+  },
+  {
+    "code": "SHS",
+    "name": "Shorts Skyvan (SC-7)",
+    "airlineEquipCode": "SC7"
+  },
+  {
+    "code": "SU7",
+    "name": "Sukhoi Superjet 100-75",
+    "airlineEquipCode": "ZZZZ"
+  },
+  {
+    "code": "SU9",
+    "name": "Sukhoi Superjet 100-95",
+    "airlineEquipCode": "SU95"
+  },
+  {
+    "code": "SWF",
+    "name": "Fairchild (Swearingen) SA226 Freighter",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "SWM",
+    "name": "Fairchild (Swearingen) SA26 / SA226 / SA227 Merlin / Metro / Expediter",
+    "airlineEquipCode": "*"
+  },
+  {
+    "code": "SY8",
+    "name": "Shaanxi Y-8",
+    "airlineEquipCode": "AN12"
+  },
+  {
+    "code": "T20",
+    "name": "Tupolev Tu-204 / Tu-214",
+    "airlineEquipCode": "T204"
+  },
+  {
+    "code": "T2F",
+    "name": "Tupolev Tu-204 Freighter",
+    "airlineEquipCode": "T204"
+  },
+  {
+    "code": "T34",
+    "name": "Tupolev Tu-334",
+    "airlineEquipCode": "T334"
+  },
+  {
+    "code": "TBM",
+    "name": "SOCATA TBM-700",
+    "airlineEquipCode": "TBM7"
+  },
+  {
+    "code": "TRN",
+    "name": "Train",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "TRS",
+    "name": "Train",
+    "airlineEquipCode": "0000"
+  },
+  {
+    "code": "TU3",
+    "name": "Tupolev Tu-134",
+    "airlineEquipCode": "T134"
+  },
+  {
+    "code": "TU5",
+    "name": "Tupolev Tu-154",
+    "airlineEquipCode": "T154"
+  },
+  {
+    "code": "WWP",
+    "name": "Israel Aerospace Industries 1124 Westwind",
+    "airlineEquipCode": "WW24"
+  },
+  {
+    "code": "YK2",
+    "name": "Yakovlev Yak-42 / Yak-142",
+    "airlineEquipCode": "YK42"
+  },
+  {
+    "code": "YK4",
+    "name": "Yakovlev Yak-40",
+    "airlineEquipCode": "YK40"
+  },
+  {
+    "code": "YN2",
+    "name": "Harbin Yunshuji Y12",
+    "airlineEquipCode": "Y12"
+  },
+  {
+    "code": "YN7",
+    "name": "Xian Yunshuji Y7",
+    "airlineEquipCode": "AN24"
+  },
+  {
+    "code": "YS1",
+    "name": "NAMC YS-11",
+    "airlineEquipCode": "YS11"
+  }
+]
