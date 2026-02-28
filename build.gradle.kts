@@ -54,12 +54,14 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-websocket-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    runtimeOnly("org.postgresql:postgresql")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     implementation("org.jetbrains.exposed:exposed-core:1.1.1")
     implementation("org.jetbrains.exposed:exposed-dao:1.1.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:1.1.1")
     implementation("org.jetbrains.exposed:exposed-kotlin-datetime:1.1.1")
+    implementation("org.jetbrains.exposed:exposed-spring-boot4-starter:1.1.1")
     implementation("com.h2database:h2:2.4.240")
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
