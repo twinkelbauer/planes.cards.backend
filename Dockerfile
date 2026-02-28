@@ -7,7 +7,6 @@ COPY gradle ./gradle
 RUN gradle build --no-daemon || return 0
 
 COPY . .
-RUN gradle openApiGenerate
 RUN gradle clean bootJar --no-daemon
 
 # -------- RUNTIME STAGE --------
