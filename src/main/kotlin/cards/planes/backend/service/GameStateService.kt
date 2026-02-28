@@ -2,6 +2,9 @@ package cards.planes.backend.service
 
 import cards.planes.backend.config.MetricsConfig
 import cards.planes.generated.models.*
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
@@ -23,6 +26,7 @@ class GameStateService(
     private val playerParties = ConcurrentHashMap<String, String>()
     private var currentWaitingParty: String? = null
     private val maxPlayersPerParty = 2
+    private val mutex = Mutex()
 
     @OptIn(ExperimentalUuidApi::class)
     @Synchronized
@@ -120,7 +124,11 @@ class GameStateService(
         parties.filter { party ->
             party.value.players.all { it.cards.size == 3 }
         }.forEach { party ->
-            getPartyState(party.key)
+            runBlocking {
+                mutex.withLock {
+                    getPartyState(party.key)
+                }
+            }
         }
     }
 
@@ -160,34 +168,40 @@ class GameStateService(
                 // BATTLE TIME! 🔥 Determine round winner and update scores
                 val (leftPlayer, rightPlayer) = updatedPlayers.sortedBy { it.yourTurn }
                 val winner = winnerSelectService.selectWinner(update.playCard.attribute, leftPlayer, rightPlayer)
-                updatedPlayers = updatedPlayers.map { player ->
-                    player.copy(
-                        score = if (winner == null || player.id == winner.id) {
-                            player.score + 1
-                        } else {
-                            player.score
-                        },
-                        playedCard = null,// Clear played cards immediately after battle
-                        cards = player.cards.filterNot { card ->
-                            card.copy(id = "irrelevant") == player.playedCard?.copy(id = "irrelevant")
+                runBlocking {
+                    mutex.withLock {
+                        updatedPlayers = updatedPlayers.map { player ->
+                            player.copy(
+                                score = if (winner == null || player.id == winner.id) {
+                                    player.score + 1
+                                } else {
+                                    player.score
+                                },
+                                playedCard = null,// Clear played cards immediately after battle
+                                cards = player.cards.filterNot { card ->
+                                    card.flightTime == player.playedCard?.flightTime
+                                            && card.estimatedLanding == player.playedCard.estimatedLanding
+                                            && card.travelDistance == player.playedCard.travelDistance
+                                }
+                            )
                         }
-                    )
+
+                        // Toggle when you weren't first the last time
+                        updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
+
+                        val gameEnded = updatedPlayers.any { it.cards.isEmpty() }
+                        val newState = if (gameEnded) GameState.ENDING else GameState.WAITING_FOR_CARDS
+
+                        val updatedParty = party.copy(
+                            players = updatedPlayers,
+                            state = newState,
+                            lastRoundWinner = winner?.id
+                        )
+
+                        parties[partyId] = updatedParty
+                        messagingTemplate.convertAndSend("/topic/party/$partyId", updatedParty)
+                    }
                 }
-
-                // Toggle when you weren't first the last time
-                updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
-
-                val gameEnded = updatedPlayers.any { it.cards.isEmpty() }
-                val newState = if (gameEnded) GameState.ENDING else GameState.WAITING_FOR_CARDS
-
-                val updatedParty = party.copy(
-                    players = updatedPlayers,
-                    state = newState,
-                    lastRoundWinner = winner?.id
-                )
-
-                parties[partyId] = updatedParty
-                messagingTemplate.convertAndSend("/topic/party/$partyId", updatedParty)
 
                 logger.info(
                     "Round complete! Winner: {} (Score: {})", winner?.id?.substring(0, 8),
