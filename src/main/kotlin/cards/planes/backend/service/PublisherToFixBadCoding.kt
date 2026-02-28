@@ -10,6 +10,6 @@ class PublisherToFixBadCoding(
 
     @Scheduled(fixedRate = 5_000)
     fun pushPushPush() {
-        gameStateService.publishAll()
+        //     gameStateService.publishAll()
     }
 }
