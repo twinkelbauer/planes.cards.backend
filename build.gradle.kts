@@ -1,3 +1,5 @@
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
 plugins {
     kotlin("jvm") version "2.2.21"
     kotlin("plugin.spring") version "2.2.21"
@@ -16,7 +18,7 @@ java {
     }
 }
 
-openApiGenerate {
+tasks.register<GenerateTask>("generateServer") {
     generatorName.set("kotlin-spring")
     inputSpec.set("$rootDir/src/main/resources/static/PlaneCards.yaml")
     packageName.set("cards.planes.generated")
@@ -63,15 +65,19 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
     }
-    sourceSets{
+    sourceSets {
         main {
             kotlin.srcDir("${rootDir}/build/generate-resources/main/src/main/kotlin")
         }
     }
 }
 
+tasks.compileJava.configure {
+    dependsOn("generateServer")
+}
+
 tasks.compileKotlin.configure {
-    dependsOn(tasks.openApiGenerate)
+    dependsOn("generateServer")
 }
 
 tasks.withType<Test> {
