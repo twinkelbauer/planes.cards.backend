@@ -70,6 +70,10 @@ kotlin {
     }
 }
 
+tasks.compileKotlin.configure {
+    dependsOn(tasks.openApiGenerate)
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
