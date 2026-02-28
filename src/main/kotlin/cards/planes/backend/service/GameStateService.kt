@@ -14,6 +14,7 @@ class GameStateService(
     private val messagingTemplate: SimpMessagingTemplate,
     private val calculator: Calculator,
     private val generateCardsService: GenerateCardsService,
+    private val winnerSelectService: WinnerSelectService,
 ) {
     companion object {
         private val logger = LoggerFactory.getLogger(GameStateService::class.java)
@@ -139,31 +140,40 @@ class GameStateService(
 
 
             if (allPlayersPlayed) {
-                // Toggle when you weren't first the last time
-                updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
                 // BATTLE TIME! 🔥 Determine round winner and update scores
-                val winner = determineRoundWinner(updatedPlayers)
-                val finalPlayers = updatedPlayers.map { player ->
+                val (leftPlayer, rightPlayer) = updatedPlayers.sortedBy { it.yourTurn }
+                val winner = winnerSelectService.selectWinner(update.playCard.attribute, leftPlayer, rightPlayer)
+                updatedPlayers = updatedPlayers.map { player ->
                     player.copy(
-                        score = if (player.id == winner.id) player.score + 1 else player.score,
+                        score = if (winner == null || player.id == winner.id) {
+                            player.score + 1
+                        } else {
+                            player.score
+                        },
                         playedCard = null,// Clear played cards immediately after battle
                         cards = player.cards.filterNot { it == requireNotNull(player.playedCard) }
                     )
                 }
 
-                val gameEnded = finalPlayers.any { it.cards.isEmpty() }
+                // Toggle when you weren't first the last time
+                updatedPlayers = updatedPlayers.map { player -> player.copy(yourTurn = !player.yourTurn) }
+
+                val gameEnded = updatedPlayers.any { it.cards.isEmpty() }
                 val newState = if (gameEnded) GameState.ENDING else GameState.WAITING
 
                 val updatedParty = party.copy(
-                    players = finalPlayers,
+                    players = updatedPlayers,
                     state = newState,
-                    lastRoundWinner = winner.id
+                    lastRoundWinner = winner?.id
                 )
 
                 parties[partyId] = updatedParty
                 messagingTemplate.convertAndSend("/topic/party/$partyId", updatedParty)
 
-                logger.info("Round complete! Winner: {} (Score: {})", winner.id.substring(0, 8), winner.score + 1)
+                logger.info(
+                    "Round complete! Winner: {} (Score: {})", winner?.id?.substring(0, 8),
+                    (winner?.score ?: 0) + 1
+                )
             } else {
                 logger.info("Player with id {} is empty", player.id)
                 // Just update with played card, waiting for other players
@@ -176,34 +186,5 @@ class GameStateService(
         }
 
         return false
-    }
-
-    private fun determineRoundWinner(players: List<GamePlayer>): GamePlayer {
-        logger.info("🚀 BATTLE TIME! Comparing cards...")
-
-        // Calculate card power for each player
-        val playerPowers = players.map { player ->
-            val card = player.playedCard!!
-            val power = calculator(card)
-            logger.info(
-                "Player {}: {} = {} power",
-                player.id.substring(0, 8), card.flightNumber, power
-            )
-            player to power
-        }
-
-        // Find the winner (highest power)
-        val winner = playerPowers.maxByOrNull { it.second }!!.first
-        logger.info(
-            "🏆 WINNER: Player {} with {} power!",
-            winner.id.substring(0, 8), playerPowers.find { it.first == winner }!!.second
-        )
-
-        return winner
-    }
-
-
-    fun getPlayerParty(playerId: String): String? {
-        return playerParties[playerId]
     }
 }
