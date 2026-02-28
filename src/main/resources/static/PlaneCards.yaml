@@ -107,12 +107,16 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/GamePlayer"
+        lastRoundWinner:
+          type: string
+          description: "ID of player who won the last round"
 
     GamePlayer:
       type: object
       required:
         - id
         - cards
+        - score
       properties:
         id:
           type: string
@@ -124,6 +128,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/GameCard"
+        score:
+          type: integer
+          example: 0
+          description: "Player's current score"
 
     GameCard:
       type: object
