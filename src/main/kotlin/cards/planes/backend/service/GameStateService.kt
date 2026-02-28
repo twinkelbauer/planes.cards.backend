@@ -1,7 +1,9 @@
 package cards.planes.backend.service
 
 import cards.planes.backend.Calculator
+import cards.planes.backend.config.MetricsConfig
 import cards.planes.generated.models.*
+import io.micrometer.core.instrument.Counter
 import org.slf4j.LoggerFactory
 import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
@@ -12,7 +14,6 @@ import kotlin.uuid.Uuid
 @Service
 class GameStateService(
     private val messagingTemplate: SimpMessagingTemplate,
-    private val calculator: Calculator,
     private val generateCardsService: GenerateCardsService,
     private val winnerSelectService: WinnerSelectService,
 ) {
@@ -99,12 +100,17 @@ class GameStateService(
         parties[newPartyId] = newParty
         currentWaitingParty = newPartyId
 
+        MetricsConfig.partyCounter.increment()
         logger.info("Created new waiting party: {}", newPartyId)
         return newPartyId
     }
 
     fun getPartyState(partyId: String): PartyGame? {
-        return parties[partyId]
+        return parties[partyId].also {
+            if (it != null) {
+                messagingTemplate.convertAndSend("/topic/party/$partyId", it)
+            }
+        }
     }
 
     fun updateParty(partyId: String, playerId: String, update: PartyClientUpdate): Boolean {
