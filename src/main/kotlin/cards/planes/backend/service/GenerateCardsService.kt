@@ -26,37 +26,50 @@ class GenerateCardsService(
 
     @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
     fun generateCards(): List<GameCard> {
-        val flights = flightRepository.getRandomFlights(6)
+        return generateCards(0)
+    }
 
-        logger.info("Found ${flights.size} flight cards")
+    @OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
+    private fun generateCards(retries: Int): List<GameCard> {
+        return runCatching {
+            val flights = flightRepository.getRandomFlights(6)
 
-        return flights.map { flight ->
-            val boarding = OffsetDateTime.ofInstant(flight.boardingTime.toJavaInstant(), ZoneOffset.UTC)
-            val estimated = OffsetDateTime.ofInstant(flight.departureTime.toJavaInstant(), ZoneOffset.UTC)
-            val airport = requireNotNull(referenceDataService.getReducedAirport(flight.origin))
-            val destAirport = requireNotNull(referenceDataService.getReducedAirport(flight.destination))
-            val flightTime = Duration.between(boarding, estimated).toMinutes()
-            GameCard(
-                seatNumber = "${Random.nextInt(1, 50)}${('A'..'F').random()}",
-                flightNumber = flight.flightNumber.toString(),
-                startAirport = airport.name,
-                boardingTime = boarding,
-                estimatedLanding = estimated,
-                destinationAirport = airport.name,
-                aircraft = referenceDataService.getAircraft(flight.aircraftType)?.name ?: "Unknown",
-                id = Uuid.random().toHexDashString(),
-                flightTime = BigDecimal.valueOf(flightTime),
-                travelDistance = runCatching {
-                    BigDecimal.valueOf(
-                        roughDistance(
-                            lat1 = airport.lat!!,
-                            lon1 = airport.lan!!,
-                            lat2 = destAirport.lat!!,
-                            lon2 = destAirport.lan!!,
+            logger.info("Found ${flights.size} flight cards")
+
+            flights.map { flight ->
+                val boarding = OffsetDateTime.ofInstant(flight.boardingTime.toJavaInstant(), ZoneOffset.UTC)
+                val estimated = OffsetDateTime.ofInstant(flight.departureTime.toJavaInstant(), ZoneOffset.UTC)
+                val airport = requireNotNull(referenceDataService.getReducedAirport(flight.origin))
+                val destAirport = requireNotNull(referenceDataService.getReducedAirport(flight.destination))
+                val flightTime = Duration.between(boarding, estimated).toMinutes()
+                GameCard(
+                    seatNumber = "${Random.nextInt(1, 50)}${('A'..'F').random()}",
+                    flightNumber = flight.flightNumber.toString(),
+                    startAirport = airport.name,
+                    boardingTime = boarding,
+                    estimatedLanding = estimated,
+                    destinationAirport = airport.name,
+                    aircraft = referenceDataService.getAircraft(flight.aircraftType)?.name ?: "Unknown",
+                    id = Uuid.random().toHexDashString(),
+                    flightTime = BigDecimal.valueOf(flightTime),
+                    travelDistance = runCatching {
+                        BigDecimal.valueOf(
+                            roughDistance(
+                                lat1 = airport.lat!!,
+                                lon1 = airport.lan!!,
+                                lat2 = destAirport.lat!!,
+                                lon2 = destAirport.lan!!,
+                            )
                         )
-                    )
-                }.getOrElse { BigDecimal.valueOf(Random.nextLong()) }
-            )
+                    }.getOrElse { BigDecimal.valueOf(Random.nextLong()) }
+                )
+            }
+        }.getOrElse {
+            if (retries < 5) {
+                generateCards(retries + 1)
+            } else {
+                throw it
+            }
         }
     }
 
