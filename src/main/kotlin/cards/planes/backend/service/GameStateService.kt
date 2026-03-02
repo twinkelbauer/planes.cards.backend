@@ -152,10 +152,11 @@ class GameStateService(
                     val playedCard = update.playCard.playedCard
                     val originalCards = player.cards
 
-                    logger.info("Player {} attempting to play card: flightTime={}, estimatedLanding={}, travelDistance={}",
-                        playerId, playedCard.flightTime, playedCard.estimatedLanding, playedCard.travelDistance)
-                    logger.info("Player {} current cards: {}", playerId,
-                        originalCards.map { "flightTime=${it.flightTime}, estimatedLanding=${it.estimatedLanding}, travelDistance=${it.travelDistance}" })
+                    logger.info("Player {} attempting to play card: id {}", player.id, playedCard.id)
+                    logger.info(
+                        "Player {} current cards: {}", playerId,
+                        originalCards.joinToString(", ") { it.id }
+                    )
 
                     val remainingCards = originalCards.filterNot { card ->
                         card.flightTime == playedCard.flightTime
@@ -164,12 +165,23 @@ class GameStateService(
                     }
 
                     if (remainingCards.size == originalCards.size) {
-                        val error = "Card not found in player's hand! Received: flightTime=${playedCard.flightTime}, estimatedLanding=${playedCard.estimatedLanding}, travelDistance=${playedCard.travelDistance}. Available cards: ${originalCards.map { "flightTime=${it.flightTime}, estimatedLanding=${it.estimatedLanding}, travelDistance=${it.travelDistance}" }}"
+                        val error =
+                            "Card not found in player's hand! Received: flightTime=${playedCard.flightTime}, estimatedLanding=${playedCard.estimatedLanding}, travelDistance=${playedCard.travelDistance}. Available cards: ${originalCards.map { "flightTime=${it.flightTime}, estimatedLanding=${it.estimatedLanding}, travelDistance=${it.travelDistance}" }}"
                         logger.error(error)
+
+                        party.players.forEach {
+                            if (it.cards.any { card -> card.id == playedCard.id }) {
+                                logger.info("Player {} has card: id {}", it.id, playedCard.id)
+                            }
+                        }
                         throw IllegalArgumentException(error)
                     }
 
-                    logger.info("Successfully removed card. Cards remaining: {} (was {})", remainingCards.size, originalCards.size)
+                    logger.info(
+                        "Successfully removed card. Cards remaining: {} (was {})",
+                        remainingCards.size,
+                        originalCards.size
+                    )
 
                     player.copy(
                         playedCard = playedCard,
