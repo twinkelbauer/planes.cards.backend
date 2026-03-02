@@ -149,13 +149,31 @@ class GameStateService(
             // Remove the played card from player's hand immediately
             var updatedPlayers = party.players.map { player ->
                 if (player.id == playerId) {
+                    val playedCard = update.playCard.playedCard
+                    val originalCards = player.cards
+
+                    logger.info("Player {} attempting to play card: flightTime={}, estimatedLanding={}, travelDistance={}",
+                        playerId, playedCard.flightTime, playedCard.estimatedLanding, playedCard.travelDistance)
+                    logger.info("Player {} current cards: {}", playerId,
+                        originalCards.map { "flightTime=${it.flightTime}, estimatedLanding=${it.estimatedLanding}, travelDistance=${it.travelDistance}" })
+
+                    val remainingCards = originalCards.filterNot { card ->
+                        card.flightTime == playedCard.flightTime
+                                && card.estimatedLanding == playedCard.estimatedLanding
+                                && card.travelDistance == playedCard.travelDistance
+                    }
+
+                    if (remainingCards.size == originalCards.size) {
+                        val error = "Card not found in player's hand! Received: flightTime=${playedCard.flightTime}, estimatedLanding=${playedCard.estimatedLanding}, travelDistance=${playedCard.travelDistance}. Available cards: ${originalCards.map { "flightTime=${it.flightTime}, estimatedLanding=${it.estimatedLanding}, travelDistance=${it.travelDistance}" }}"
+                        logger.error(error)
+                        throw IllegalArgumentException(error)
+                    }
+
+                    logger.info("Successfully removed card. Cards remaining: {} (was {})", remainingCards.size, originalCards.size)
+
                     player.copy(
-                        playedCard = update.playCard.playedCard,
-                        cards = player.cards.filterNot { card ->
-                            card.flightTime == update.playCard.playedCard.flightTime
-                                    && card.estimatedLanding == update.playCard.playedCard.estimatedLanding
-                                    && card.travelDistance == update.playCard.playedCard.travelDistance
-                        },
+                        playedCard = playedCard,
+                        cards = remainingCards,
                         yourTurn = false
                     )
                 } else {
