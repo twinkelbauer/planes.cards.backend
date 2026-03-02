@@ -152,9 +152,9 @@ class GameStateService(
                     player.copy(
                         playedCard = update.playCard.playedCard,
                         cards = player.cards.filterNot { card ->
-                            card.flightTime == update.playCard.playedCard
-                                    && card.estimatedLanding ==update.playCard.playedCard
-                                    && card.travelDistance == update.playCard.playedCard
+                            card.flightTime == update.playCard.playedCard.flightTime
+                                    && card.estimatedLanding == update.playCard.playedCard.estimatedLanding
+                                    && card.travelDistance == update.playCard.playedCard.travelDistance
                         },
                         yourTurn = false
                     )
