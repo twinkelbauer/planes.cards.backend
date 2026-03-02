@@ -158,11 +158,7 @@ class GameStateService(
                         originalCards.joinToString(", ") { it.id }
                     )
 
-                    val remainingCards = originalCards.filterNot { card ->
-                        card.flightTime == playedCard.flightTime
-                                && card.estimatedLanding == playedCard.estimatedLanding
-                                && card.travelDistance == playedCard.travelDistance
-                    }
+                    val remainingCards = originalCards.filterNot { card -> card.id == playedCard.id }
 
                     if (remainingCards.size == originalCards.size) {
                         val error =
